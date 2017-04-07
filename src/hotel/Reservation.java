@@ -19,16 +19,15 @@ public class Reservation
                 endDate = end;
 	}
 	
-	/**
-		returns reservation number
-	*/
-	public int getReservationNumber()
-	{
-		//ok this returns an int but we've got reservationNumber as a String
-		//so do whatever you think is best I guess...
+	public Room getRoom() {
+		return room;
+	}
+	
+	public int getReservationNumber(){
+	    return reservationNumber;
 	}
 	public int getRoomNumber(){
-            
+            return roomNumber;
         }
         public Calendar getStartDate(){
             Calendar clone = Calendar.getInstance();
@@ -46,6 +45,7 @@ public class Reservation
 	private int reservationNumber;
         private int roomNumber;
 	private Guest guest;
+	private Room room;
 	//private ArrayList<Room> rooms;
 	private Calendar startDate;
 	private Calendar endDate;
