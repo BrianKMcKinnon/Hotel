@@ -39,6 +39,14 @@ public class Reservation
             clone = (Calendar)endDate.clone();
             return clone;
         }
+	
+	public void setAdditionalNotes(String notes) {
+	    additionalNotes = notes;
+	}
+	
+	public String getAdditionalNotes() {
+	    return additionalNotes;
+	}
 	//lol is that all the methods we need?.....
 	
 	//variables- do any of these need to be public? what about the guest and room list?
@@ -46,6 +54,7 @@ public class Reservation
         private int roomNumber;
 	private Guest guest;
 	private Room room;
+	private String additionalNotes;
 	//private ArrayList<Room> rooms;
 	private Calendar startDate;
 	private Calendar endDate;
