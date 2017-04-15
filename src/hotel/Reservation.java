@@ -10,10 +10,12 @@ public class Reservation
 	/**
 		creates Reservation object, initalizes
 	*/
-	public Reservation(int res, int roomNum, Guest g, Calendar start, Calendar end)
+	public Reservation(int res, int roomNum, double rate, double total, Guest g, Calendar start, Calendar end)
 	{
 		reservationNumber = res;
                 roomNumber = roomNum;
+                roomRate = rate;
+                roomTotal = total;
                 guest = g;
                 startDate = start;
                 endDate = end;
@@ -52,6 +54,8 @@ public class Reservation
 	//variables- do any of these need to be public? what about the guest and room list?
 	private int reservationNumber;
         private int roomNumber;
+        private double roomRate;
+        private double roomTotal;
 	private Guest guest;
 	private Room room;
 	private String additionalNotes;

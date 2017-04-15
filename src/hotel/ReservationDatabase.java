@@ -90,6 +90,45 @@ public class ReservationDatabase {
         return result;
     }
     
+    public ArrayList<Reservation> queryDatabase(Room room){
+        currentReservations.clear();
+        ResultSet rs = null;
+        String query = "SELECT * FROM RESERVATIONS WHERE ROOMTYPE == " + Integer.toString(room.roomType);
+        
+        if(con != null){
+            try{
+                Statement stmt = con.createStatement();
+                rs = stmt.executeQuery(query);
+                while(rs.next()){
+                    String delims = "-";
+                    String[] start = rs.getString(7).split(delims);
+                    String[] end = rs.getString(8).split(delims);
+                    int startYear = Integer.parseInt(start[0]);
+                    int startMonth = Integer.parseInt(start[1]) - 1;
+                    int startDay = Integer.parseInt(start[2]);
+                    int endYear = Integer.parseInt(end[0]);
+                    int endMonth = Integer.parseInt(end[1]) - 1;
+                    int endDay = Integer.parseInt(end[2]);
+                    Calendar startDate = Calendar.getInstance();
+                    startDate.set(startYear, startMonth, startDay);
+                    Calendar endDate = Calendar.getInstance();
+                    endDate.set(endYear, endMonth, endDay);
+                    currentReservations.add(new Reservation(rs.getInt(1), 
+                                                            rs.getInt(4), 
+                                                            rs.getDouble(5), 
+                                                            rs.getDouble(6),
+                                                            new Guest(rs.getString(7), rs.getString(8)),
+                                                            startDate,
+                                                            endDate));
+                }
+            }catch(Exception e){
+                
+            }
+        }
+        
+        return currentReservations;
+    }
+    
     private ArrayList<Reservation> currentReservations;
     Connection con = null;
 }
