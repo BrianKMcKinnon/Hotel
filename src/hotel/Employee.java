@@ -13,22 +13,25 @@ public class Employee {
     public Employee(){
         
     }
+    /////////////////////////////////////////////////////////
+    //Maybe we should make these protected so Manager can inherit
+    //not public?
+    ///////////////////////////////////////////////////////
+    protected String userName;
+    protected int idNumber;
+    protected String passcode;
     
-    private String userName;
-    private int idNumber;
-    private String passcode;
-    
-    private void changePasscode(){
+    protected void changePasscode(){
         
     }
-    private void createReservation(Room room, Guest guest, Date start, Date end){
+    protected void createReservation(Room room, Guest guest, Date start, Date end){
         Randomn rand;
         resNum = rand.nextInt(99999999);
         Reservation newReservation = new Reservation(resNum, room.roomNumber, guest, start, end);
         ReservationDatabase.addReservation(newReservation);
     }
     
-    private void cancelReservation(int reservationNumber){
+    protected void cancelReservation(int reservationNumber){
         try {
             ReservationDatabase.query(reservationNumber);
         }
@@ -38,7 +41,7 @@ public class Employee {
          // Display unfound reservation in GUI   
         }
     }
-    public void modifyReservation(){
+    protected void modifyReservation(){
         try {
             ReservationDatabase.query(reservationNumber);
             // Create a new reservation
