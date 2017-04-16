@@ -15,7 +15,6 @@ public class Room {
     private int roomNumber;
     private double roomCost;
     
-    //private int roomType;
     public enum roomType
     {
         SUITE, KING, QUEEN, SINGLE          // enum as a description of bed size
@@ -23,7 +22,6 @@ public class Room {
     
     roomType type;
     
-    // methods
     /**
      * Class constructor 
      */
@@ -36,6 +34,10 @@ public class Room {
         this.type = type;
     }
    
+    /**
+     * Identifies a case for each room type
+     * @param room 
+     */
     public void enumTest(roomType room)
     {
         switch(room)
@@ -62,16 +64,28 @@ public class Room {
         }
     }
     
+    /**
+     * Sets a room cost
+     * @param cost 
+     */
     public void setCost(double cost)
     {
         roomCost = cost;
     }
     
+    /**
+     * Obtains a room cost
+     * @return room cost
+     */
     public double getCost()
     {
         return roomCost;
     }
     
+    /**
+     * Obtains a room number
+     * @return room number
+     */
     public int getRoomNumber()
     {
         return roomNumber;

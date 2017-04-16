@@ -39,9 +39,8 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Obtains reservation number by calling generatesRandom() for a random number
      * @return a reservation number
-     * calls generateRandom() for a random number
      */
     public String getReservationNumber()
     {
@@ -56,9 +55,8 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Generates a random number with length = 12
      * @return a random generated number of a reservation number
-     * generate a random number with length = 12
      */
     public String generateRandom()
     {
@@ -78,8 +76,8 @@ public class Reservation {
     }
     
     /**
-     * 
-     * @return room object for the specific reservation number
+     * Obtains a room object for the specific reservation number
+     * @return a room object
      */
     public Room getRoom()
     {
@@ -87,7 +85,7 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Obtains a rate for the specific room of the reservation number
      * @return room rate for pricing
      */
     public double getRoomRate()
@@ -96,8 +94,8 @@ public class Reservation {
     }
     
     /**
-     * 
-     * @return total of room(s) in a specific reservation
+     * Obtains the total number of rooms in a specific reservation
+     * @return total room
      */
     public double getRoomTotal()
     {
@@ -105,8 +103,8 @@ public class Reservation {
     }
     
     /**
-     * 
-     * @return guest object for a specific reservation
+     * Obtains the guest object for a specific reservation
+     * @return a guest object
      */
     public Guest getRoomGuest()
     {
@@ -114,9 +112,8 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Obtains a room number of the specific reservation number
      * @return a room number
-     * obtain a room number of the specific reservation number
      */
     public int getRoomNumber()
     {
@@ -124,9 +121,8 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Obtains a start date of the specific reservation number
      * @return a start date
-     * obtain a start date of the specific reservation number
      */
     public Calendar getStartDate()
     {
@@ -136,9 +132,8 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Obtains an end date of the specific reservation number
      * @return an ending date
-     * obtain an end date of the specific reservation number
      */
     public Calendar getEndDate()
     {
@@ -148,9 +143,8 @@ public class Reservation {
     }
     
     /**
-     * 
+     * Sets additional notes taken from a customer
      * @param notes 
-     * sets additional notes taken from a customer
      */
     public void setAdditionalNotes(String notes) 
     {
@@ -158,8 +152,8 @@ public class Reservation {
     }
 	
     /**
-     * 
-     * @return any additional notes taken from a customer
+     * Obtains any additional notes from a customer
+     * @return any additional notes
      */
     public String getAdditionalNotes() 
     {
