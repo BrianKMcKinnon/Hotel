@@ -7,25 +7,64 @@ package hotel;
 
 /**
  *
- * @author brian
+ * @author Atchima
  */
 public class Room {
-    public Room(int num, int occ, double cost, int type){
+    
+    // variables
+    private int roomNumber;
+    private double roomCost;
+    
+    //private int roomType;
+    public enum roomType
+    {
+        SUITE, KING, QUEEN, SINGLE          // enum as a description of bed size
+    }
+    
+    roomType type;
+    
+    // methods
+    /**
+     * Class constructor 
+     */
+    public Room(int num, double cost, roomType type)
+    {
+        // constructor
         roomNumber = num;
-        maxOccupancy = occ;
         roomCost = cost;
-        roomType = type;
+        //enumTest(room);
+        this.type = type;
+    }
+   
+    public void enumTest(roomType room)
+    {
+        switch(room)
+        {
+            case SUITE:
+                System.out.println("Suite room was selected.");
+                break;
+               
+            case KING:
+                System.out.println("King room was selected.");
+                break;
+                
+            case QUEEN:
+                System.out.println("Queen room was selected.");
+                break;
+                
+            case SINGLE:
+                System.out.println("Single room was selected.");
+                break;
+                
+            default:
+                System.out.println("No room was selected.");
+                break;
+        }
     }
     
     public void setCost(double cost)
     {
         roomCost = cost;
-    }
-    
-    public void setRoomType(int roomTypeEnum)
-    {
-        roomType = roomTypeEnum;
-        maxOccupancy = roomType + 1;
     }
     
     public double getCost()
@@ -37,24 +76,4 @@ public class Room {
     {
         return roomNumber;
     }
-    
-    public int getMaxOccupancy()
-    {
-        return maxOccupancy;
-    }
-    
-    public String getRoomType()
-    {
-        if (roomType == 0)
-            return "Single";
-        else
-            return "King";
-    }
-    
-    public int roomNumber;
-    public int maxOccupancy;
-    public double roomCost;
-    public int roomType;
-    
-    
 }
