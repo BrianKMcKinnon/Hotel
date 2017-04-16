@@ -5,32 +5,59 @@
  */
 package hotel;
 
+import java.util.Calendar;
+
 /**
  *
- * @author brian
+ * @author Brian, Atchima
  */
-public class Employee {
-    public Employee(){
-        
-    }
-    
+public class Employee 
+{
+    // variables
     private String userName;
     private int idNumber;
-    private String passcode;
+    //private String passcode;      // I dont think we need passcode for employee, but we do for manager
+    private Room room;
+    private ReservationDatabase database;
     
-    private void changePasscode(){
-        
+    /**
+     * Class constructor
+     */
+    public Employee(String name, int id, Room rm){
+        userName = name;
+        idNumber = id;
+        room = rm;
     }
-    private void createReservation(Room room, Guest guest, Date start, Date end){
-        Randomn rand;
-        resNum = rand.nextInt(99999999);
-        Reservation newReservation = new Reservation(resNum, room.roomNumber, guest, start, end);
+    
+    //private void changePasscode(){
+        // change passcode may not be needed for employee, but it is for manager
+    //}
+    
+    /**
+     * Creates a Reservation object then adds it to database
+     * @param room
+     * @param guest
+     * @param start
+     * @param end 
+     */
+    private void createReservation(Room room, Guest guest, Calendar start, Calendar end)
+    {
+        int resNum = 0;
+        double rate = 0.0;
+        double total = 0.0;
+        //Randomn rand;
+        //resNum = rand.nextInt(99999999);
+        Reservation newReservation = new Reservation(resNum, room.getRoomNumber(), rate, total, guest, start, end);
         ReservationDatabase.addReservation(newReservation);
     }
     
+    /**
+     * Cancels a reservation from database
+     * @param reservationNumber 
+     */
     private void cancelReservation(int reservationNumber){
         try {
-            ReservationDatabase.query(reservationNumber);
+            database.query(reservationNumber);
         }
         
         catch(Exception e)
@@ -38,9 +65,14 @@ public class Employee {
          // Display unfound reservation in GUI   
         }
     }
-    public void modifyReservation(){
+    
+    /**
+     * Modifies a reservation from database
+     * @param reservationNumber 
+     */
+    public void modifyReservation(int reservationNumber){
         try {
-            ReservationDatabase.query(reservationNumber);
+            database.query(reservationNumber);
             // Create a new reservation
             // Delete the old reservation
         }
