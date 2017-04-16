@@ -37,12 +37,12 @@ public class ReservationDatabase {
         ArrayList<Room> takenRooms = null;
         if(con != null){
             try{
-                Statement stmt = con.createStatement();
+                Statement stmt= con.createStatement();
                 rs = stmt.executeQuery(query);
                 while(rs.next())
                     takenRooms.add(new Room(rs.getInt(4), 0, 0, 0));
             }catch(Exception e){
-                
+                e.printStackTrace();
             }
 
         }
@@ -82,7 +82,7 @@ public class ReservationDatabase {
                                              endDate);
                 }
             }catch(Exception e){
-                
+                e.printStackTrace();
             }
 
         }
@@ -122,7 +122,7 @@ public class ReservationDatabase {
                                                             endDate));
                 }
             }catch(Exception e){
-                
+                e.printStackTrace();
             }
         }
         
@@ -161,7 +161,7 @@ public class ReservationDatabase {
                                                             endDate));
                 }
             }catch(Exception e){
-                
+                e.printStackTrace();
             }
         }
         return currentReservations;
@@ -185,7 +185,7 @@ public class ReservationDatabase {
                 Statement stmt = con.createStatement();
                 stmt.executeQuery(query);
             }catch(Exception e){
-                
+                e.printStackTrace();
             }
         }
     }
@@ -201,6 +201,14 @@ public class ReservationDatabase {
                 + ", TOTAL = "      + Double.toString(res.getRoomTotal())
                 + ", FIRSTNAME = '" + res.getRoomGuest().getFirstName()
                 + "', LASTNAME = '"  + res.getRoomGuest().getLastName() + "'";
+        if(con != null){
+            try{
+                Statement stmt = con.createStatement();
+                stmt.executeQuery(query);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     }
     
     
