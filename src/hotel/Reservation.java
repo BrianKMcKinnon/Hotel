@@ -31,6 +31,15 @@ public class Reservation
 	public int getRoomNumber(){
             return roomNumber;
         }
+        public double getRoomRate(){
+            return roomRate;
+        }
+        public double getRoomTotal(){
+            return roomTotal;
+        }
+        public Guest getRoomGuest(){
+            return guest;
+        }
         public Calendar getStartDate(){
             Calendar clone = Calendar.getInstance();
             clone = (Calendar)startDate.clone();

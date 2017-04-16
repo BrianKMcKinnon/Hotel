@@ -32,8 +32,8 @@ public class ReservationDatabase {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String startQuery = format1.format(start.getTime());
         String endQuery = format1.format(end.getTime());
-        String query = "SELECT * FROM RESERVATIONS WHERE (STARTDATE BETWEEN " + startQuery + " AND " + endQuery + 
-                       ") OR (ENDDATE BETWEEN " + startQuery + " AND " + endQuery + ")";
+        String query = "SELECT * FROM RESERVATIONS WHERE (STARTDATE BETWEEN '" + startQuery + "' AND '" + endQuery + 
+                       "') OR (ENDDATE BETWEEN '" + startQuery + "' AND '" + endQuery + "')";
         ArrayList<Room> takenRooms = null;
         if(con != null){
             try{
@@ -128,6 +128,81 @@ public class ReservationDatabase {
         
         return currentReservations;
     }
+    
+    public ArrayList<Reservation> queryDatabase(String lastName){
+        currentReservations.clear();
+        ResultSet rs = null;
+        String query = "SELECT * FROM RESERVATIONS WHERE LASTNAME == '" + lastName + "'";
+        
+        if(con != null){
+            try{
+                Statement stmt = con.createStatement();
+                rs = stmt.executeQuery(query);
+                while(rs.next()){
+                    String delims = "-";
+                    String[] start = rs.getString(7).split(delims);
+                    String[] end = rs.getString(8).split(delims);
+                    int startYear = Integer.parseInt(start[0]);
+                    int startMonth = Integer.parseInt(start[1]) - 1;
+                    int startDay = Integer.parseInt(start[2]);
+                    int endYear = Integer.parseInt(end[0]);
+                    int endMonth = Integer.parseInt(end[1]) - 1;
+                    int endDay = Integer.parseInt(end[2]);
+                    Calendar startDate = Calendar.getInstance();
+                    startDate.set(startYear, startMonth, startDay);
+                    Calendar endDate = Calendar.getInstance();
+                    endDate.set(endYear, endMonth, endDay);
+                    currentReservations.add(new Reservation(rs.getInt(1), 
+                                                            rs.getInt(4), 
+                                                            rs.getDouble(5), 
+                                                            rs.getDouble(6),
+                                                            new Guest(rs.getString(7), rs.getString(8)),
+                                                            startDate,
+                                                            endDate));
+                }
+            }catch(Exception e){
+                
+            }
+        }
+        return currentReservations;
+    }
+    
+    public void makeReservation(Reservation res){
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = format1.format(res.getStartDate().getTime());
+        String endDate = format1.format(res.getEndDate().getTime());
+        String query = "INSERT INTO RESERVATIONS VALUES ( " 
+                + Integer.toString(res.getReservationNumber()) 
+                + ",'"  + startDate
+                + "','" + endDate
+                + "',"  + Integer.toString(res.getRoomNumber())
+                + ","   + Double.toString(res.getRoomRate())
+                + ","   + Double.toString(res.getRoomTotal())
+                + ",'"  + res.getRoomGuest().getFirstName()
+                + "','" + res.getRoomGuest().getLastName() + "')";
+        if(con != null){
+            try{
+                Statement stmt = con.createStatement();
+                stmt.executeQuery(query);
+            }catch(Exception e){
+                
+            }
+        }
+    }
+    
+    public void changeReservation(Reservation res){
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = format1.format(res.getStartDate().getTime());
+        String endDate = format1.format(res.getEndDate().getTime());
+        String query = "UPDATE RESERVATION SET STARTDATE = '" + startDate
+                + "', ENDDATE = '"  + endDate
+                + "', ROOMNUMBER = "+ Integer.toString(res.getRoomNumber())
+                + ", RATE = "       + Double.toString(res.getRoomRate())
+                + ", TOTAL = "      + Double.toString(res.getRoomTotal())
+                + ", FIRSTNAME = '" + res.getRoomGuest().getFirstName()
+                + "', LASTNAME = '"  + res.getRoomGuest().getLastName() + "'";
+    }
+    
     
     private ArrayList<Reservation> currentReservations;
     Connection con = null;

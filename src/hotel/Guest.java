@@ -45,7 +45,12 @@ public class Guest
 	{
 		//should this be a function of Room? cuz we could just call Room.getRoomNumber from here
 	}
-	
+	public String getFirstName(){
+            return firstName;
+        }
+        public String getLastName(){
+            return lastName;
+        }
 	//variables
 	private String firstName;
 	private String lastName;
