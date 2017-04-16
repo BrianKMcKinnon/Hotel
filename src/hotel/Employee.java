@@ -17,23 +17,27 @@ public class Employee {
     //Maybe we should make these protected so Manager can inherit
     //not public?
     ///////////////////////////////////////////////////////
+    
+    //TAKING THESE OUT-- NO PASSCODE
+    /*
     protected String userName;
     protected int idNumber;
     protected String passcode;
     
     protected void changePasscode(){
         
-    }
+    }*/
+    
     protected void createReservation(Room room, Guest guest, Date start, Date end){
         Randomn rand;
         resNum = rand.nextInt(99999999);
         Reservation newReservation = new Reservation(resNum, room.roomNumber, guest, start, end);
-        ReservationDatabase.addReservation(newReservation);
+        HotelSystem.addReservation(newReservation);
     }
     
     protected void cancelReservation(int reservationNumber){
         try {
-            ReservationDatabase.query(reservationNumber);
+            HotelSystem.queryDatabase(reservationNumber);
         }
         
         catch(Exception e)
@@ -43,7 +47,7 @@ public class Employee {
     }
     protected void modifyReservation(){
         try {
-            ReservationDatabase.query(reservationNumber);
+            HoteSystem.queryDatabase(reservationNumber);
             // Create a new reservation
             // Delete the old reservation
         }
