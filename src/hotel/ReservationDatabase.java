@@ -3,18 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Hotel;
+package hotel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+
 //import static java.sql.JDBCType.NULL;
 /**
  *
  * @author brian
  */
-public class ReservationDatabase {
+
+public class ReservationDatabase 
+{
+    // variables
+    private ArrayList<Reservation> currentReservations;
+    private Connection con = null;
+    
+    /**
+     * Class Constructor
+     * Add java documentation
+     */
     public ReservationDatabase(){
 
 
@@ -27,6 +38,12 @@ public class ReservationDatabase {
         }
     }
     
+    /**
+     * Add java documentation
+     * @param start
+     * @param end
+     * @return 
+     */
     public ArrayList<Room> queryDatabase(Calendar start, Calendar end){
         ResultSet rs = null;
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -50,6 +67,11 @@ public class ReservationDatabase {
         return takenRooms;
     }
     
+    /**
+     * Add java documentation
+     * @param reservation
+     * @return 
+     */
     public Reservation queryDatabase(int reservation){
         Reservation result = null;
         ResultSet rs = null;
@@ -90,6 +112,11 @@ public class ReservationDatabase {
         return result;
     }
     
+    /**
+     * Add java documentation
+     * @param room
+     * @return 
+     */
     public ArrayList<Reservation> queryDatabase(Room room){
         currentReservations.clear();
         ResultSet rs = null;
@@ -129,6 +156,11 @@ public class ReservationDatabase {
         return currentReservations;
     }
     
+    /**
+     * Add java documentation
+     * @param lastName
+     * @return 
+     */
     public ArrayList<Reservation> queryDatabase(String lastName){
         currentReservations.clear();
         ResultSet rs = null;
@@ -167,6 +199,10 @@ public class ReservationDatabase {
         return currentReservations;
     }
     
+    /**
+     * Add java documentation
+     * @param res 
+     */
     public void makeReservation(Reservation res){
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String startDate = format1.format(res.getStartDate().getTime());
@@ -190,6 +226,10 @@ public class ReservationDatabase {
         }
     }
     
+    /**
+     * Add java documentation
+     * @param res 
+     */
     public void changeReservation(Reservation res){
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String startDate = format1.format(res.getStartDate().getTime());
@@ -211,7 +251,4 @@ public class ReservationDatabase {
         }
     }
     
-    
-    private ArrayList<Reservation> currentReservations;
-    Connection con = null;
 }

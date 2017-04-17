@@ -15,6 +15,11 @@ public class Payment {
     }
     
     // Does payment need to do anything more?
+    /**
+     * Add java documentation
+     * @param creditCard
+     * @return 
+     */
     public static boolean checkPayment(String creditCard){
         return (creditCard.length() == 16);
     }

@@ -8,13 +8,27 @@ package hotel;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-
 /**
  *
  * @author brian
  */
-public class HotelSystem {
+
+public class HotelSystem 
+{
+    // variables
+    public String hotelName;
+    public int numRooms;
+    public ArrayList<Employee> employees;
+    public ArrayList<Manager> managers;
+    public ArrayList<Guest> guests;
+    private ArrayList<Room> allRooms;
+    private ArrayList<Room> searchResultRooms;
+    private ReservationDatabase rd;
+    
+    /**
+     * Add java documentation
+     * @param roomCount 
+     */
     public HotelSystem(int roomCount){
         for(int i=0;i<roomCount;i++){
             if(i%2==0){
@@ -30,14 +44,12 @@ public class HotelSystem {
         rd = new ReservationDatabase();
     }
     
-    public String hotelName;
-    public int numRooms;
-    public ArrayList<Employee> employees;
-    public ArrayList<Manager> managers;
-    public ArrayList<Guest> guests;
-    private ArrayList<Room> allRooms;
-    private ArrayList<Room> searchResultRooms;
-    
+    /**
+     * Add java documentation
+     * @param startDate
+     * @param endDate
+     * @return 
+     */
     public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate){
         searchResultRooms.clear();
         ArrayList<Room> temp = null;
@@ -57,6 +69,11 @@ public class HotelSystem {
         return searchResultRooms;
     }
     
+    /**
+     * Add java documentation
+     * @param roomType
+     * @return 
+     */
     public ArrayList<Room> findAvailableRoom(Room roomType){
         searchResultRooms.clear();
         ArrayList<Room> temp = null;
@@ -75,27 +92,61 @@ public class HotelSystem {
         }
         return searchResultRooms;
     }
+    
+    /**
+     * Add java documentation
+     * @param res
+     * @return 
+     */
     public Reservation lookUpReservation(int res){
         Reservation result = rd.queryDatabase(res);
         return result;
     }
+    
+    /**
+     * Add java documentation
+     * @param startDate
+     * @param endDate
+     * @return 
+     */
     public ArrayList<Room> findOccupiedRoom(Calendar startDate, Calendar endDate){
         searchResultRooms = rd.queryDatabase(startDate, endDate, false);
         return searchResultRooms;
     }
+    
+    /**
+     * Add java documentation
+     * @param lastName
+     * @return 
+     */
     public ArrayList<Room> findOccupiedRoom(String lastName){
         searchResultRooms = rd.queryDatabase(lastName);
         return searchResultRooms;
     }
+    
+    /**
+     * Add java documentation
+     * @return 
+     */
     public ArrayList<Room> allRooms(){
         
         return allRooms;
     }
+    
+    /**
+     * Add java documentation
+     * @param res 
+     */
     public void changeReservation(Reservation res){
         rd.changeReservation(res);
     }
+    
+    /**
+     * Add java documentation
+     * @param res 
+     */
     public void makeReservation(Reservation res){
         rd.makeReservation(res);
     }
-    ReservationDatabase rd;
+    
 }
