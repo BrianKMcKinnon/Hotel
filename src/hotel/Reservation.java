@@ -44,9 +44,11 @@ public class Reservation {
      */
     public String getReservationNumber()
     {
+        long resNum = 0;
         reservationNumber = generateRandom();
+        resNum = Long.parseLong(reservationNumber);
         // ensure the number is not taken
-        while((system.lookUpReservation(reservationNumber)) != NULL)
+        while((system.lookUpReservation(resNum)) != NULL)
         {
             // returns null if available, so not null if not free
             reservationNumber = generateRandom();
@@ -60,7 +62,7 @@ public class Reservation {
      */
     public String generateRandom()
     {
-        int length = 12;
+        int length = 8;
         
         Random random = new Random();
         char[] digits = new char[length];
