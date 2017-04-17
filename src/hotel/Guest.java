@@ -12,6 +12,7 @@ public class Guest
      * Class constructor
      * @param aFirstName
      * @param aLastName 
+     * @param rm
      * Initializes first and last names
      */
     public Guest(String aFirstName, String aLastName, Room rm)
