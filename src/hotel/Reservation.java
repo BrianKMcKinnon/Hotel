@@ -3,7 +3,7 @@
  * @author Atchima
  */
 
-package Hotel;
+package hotel;
 import static java.sql.Types.NULL;
 import java.util.ArrayList;
 import java.util.Calendar;
