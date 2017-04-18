@@ -57,14 +57,15 @@ public class Employee
      * @param reservationNumber 
      */
     public void cancelReservation(int reservationNumber){
-        try {
+        database.query(reservationNumber);       
+        /* try {
             database.query(reservationNumber);
         }
         
         catch(Exception e)
         {
          // Display unfound reservation in GUI   
-        }
+        }*/
     }
     
     /**
@@ -72,7 +73,8 @@ public class Employee
      * @param reservationNumber 
      */
     public void modifyReservation(int reservationNumber){
-        try {
+        database.query(reservationNumber);
+        /*try {
             database.query(reservationNumber);
             // Create a new reservation
             // Delete the old reservation
@@ -81,6 +83,6 @@ public class Employee
         catch(Exception e)
         {
             // Display unfound reservation in GUI
-        }
+        }*/
     }
 }
