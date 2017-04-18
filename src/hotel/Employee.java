@@ -34,6 +34,10 @@ public class Employee
         // change passcode may not be needed for employee, but it is for manager
     //}
     
+    
+    ////////////////////////////////////////////////////////////////////////////////////
+    //moving this to User, which Employee extends, then Manager extends Employee
+    ////////////////////////////////////////////////////////////////////////////////////
     /**
      * Creates a Reservation object then adds it to database
      * @param room
@@ -41,7 +45,7 @@ public class Employee
      * @param start
      * @param end 
      */
-    public void createReservation(Room room, Guest guest, Calendar start, Calendar end)
+    /*public void createReservation(Room room, Guest guest, Calendar start, Calendar end)
     {
         int resNum = 0;
         double rate = 0.0;
@@ -56,7 +60,7 @@ public class Employee
      * Cancels a reservation from database
      * @param reservationNumber 
      */
-    public void cancelReservation(int reservationNumber){
+    /*public void cancelReservation(int reservationNumber){
         database.query(reservationNumber);       
         /* try {
             database.query(reservationNumber);
@@ -66,13 +70,13 @@ public class Employee
         {
          // Display unfound reservation in GUI   
         }*/
-    }
+   // }
     
     /**
      * Modifies a reservation from database
      * @param reservationNumber 
      */
-    public void modifyReservation(int reservationNumber){
+   /* public void modifyReservation(int reservationNumber){
         database.query(reservationNumber);
         /*try {
             database.query(reservationNumber);
@@ -84,5 +88,5 @@ public class Employee
         {
             // Display unfound reservation in GUI
         }*/
-    }
+    //}
 }
