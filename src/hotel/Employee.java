@@ -14,11 +14,12 @@ import java.util.Calendar;
 public class Employee 
 {
     // variables
-    private String userName;
-    private int idNumber;
+    //think these should be protected so Manager can inherit
+    protected String userName;
+    protected int idNumber;
     //private String passcode;      // I dont think we need passcode for employee, but we do for manager
-    private Room room;
-    private ReservationDatabase database;
+    protected Room room;
+    protected ReservationDatabase database;
     
     /**
      * Class constructor
