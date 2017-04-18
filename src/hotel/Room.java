@@ -20,7 +20,7 @@ public class Room {
         SUITE, KING, QUEEN, SINGLE          // enum as a description of bed size
     }
     
-    private roomType type;
+    public roomType type;
     
     /**
      * Class constructor 
