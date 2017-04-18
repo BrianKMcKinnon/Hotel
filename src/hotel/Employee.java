@@ -41,7 +41,7 @@ public class Employee
      * @param start
      * @param end 
      */
-    private void createReservation(Room room, Guest guest, Calendar start, Calendar end)
+    public void createReservation(Room room, Guest guest, Calendar start, Calendar end)
     {
         int resNum = 0;
         double rate = 0.0;
@@ -56,7 +56,7 @@ public class Employee
      * Cancels a reservation from database
      * @param reservationNumber 
      */
-    private void cancelReservation(int reservationNumber){
+    public void cancelReservation(int reservationNumber){
         try {
             database.query(reservationNumber);
         }
