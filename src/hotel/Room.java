@@ -64,18 +64,6 @@ public class Room {
         }
     }
     
-    // do we need a method for modifying room type?
-    
-    /**
-     * Sets a room cost
-     * @param cost 
-     */
-    public void setCost(double cost)
-    {
-        roomCost = cost;
-        // call a function in manager to set it maybe?
-    }
-    
     /**
      * Obtains a room cost
      * @return room cost
