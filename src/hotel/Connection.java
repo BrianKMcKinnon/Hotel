@@ -27,4 +27,6 @@ public class Connection
         // initialize something here
     }
     
+    // if guest was selected, then state changes, calls functions, and do something
+    
 }

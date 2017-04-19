@@ -112,8 +112,6 @@ public class Reservation {
     public Guest getRoomGuest()
     {
         return guest;
-        // do we need an arraylist of guest since it could be multiple? or should we just do one person whoever
-        // reserved it?
     }
     
     /**
