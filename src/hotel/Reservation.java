@@ -46,9 +46,10 @@ public class Reservation {
     {
         long resNum = 0;
         reservationNumber = generateRandom();
-        resNum = Long.parseLong(reservationNumber);
+        //resNum = Long.parseLong(reservationNumber);
+        
         // ensure the number is not taken
-        while((system.lookUpReservation(resNum)) != NULL)
+        while((system.lookUpReservation(reservationNumber)) != NULL)
         {
             // returns null if available, so not null if not free
             reservationNumber = generateRandom();
