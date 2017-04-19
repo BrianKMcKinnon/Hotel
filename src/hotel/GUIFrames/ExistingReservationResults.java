@@ -5,25 +5,19 @@
  */
 package hotel.GUIFrames;
 
-import Hotel.ReservationDatabase;
-import hotel.GUIFrames.Guest.PaymentScreen;
-import hotel.Reservation;
-import hotel.Room;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Chandler
  */
-public class RoomResults extends javax.swing.JFrame {
+public class ExistingReservationResults extends javax.swing.JFrame {
 
     /**
-     * Creates new form RoomResults
+     * Creates new form ReservationResults
      */
-    public RoomResults() {
+    public ExistingReservationResults() {
         initComponents();
     }
 
@@ -36,31 +30,28 @@ public class RoomResults extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel8 = new javax.swing.JLabel();
-        reservationCode = new javax.swing.JLabel();
-        home_Button = new javax.swing.JButton();
+        home_Button1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         firstName = new javax.swing.JLabel();
         lastName = new javax.swing.JLabel();
         stayDuration = new javax.swing.JLabel();
         roomNumber = new javax.swing.JLabel();
-        roomType_label = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        cost_label = new javax.swing.JLabel();
+        roomType = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        reservationCode = new javax.swing.JLabel();
+        home_Button = new javax.swing.JButton();
+        cancelReservation_Button = new javax.swing.JButton();
+        modifyReservation_Button = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel8.setText("Reservation Code");
-
-        reservationCode.setText("aeuh839t39");
-
-        home_Button.setText("Home");
-        home_Button.addActionListener(new java.awt.event.ActionListener() {
+        home_Button1.setText("Home");
+        home_Button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                home_ButtonActionPerformed(evt);
+                home_Button1ActionPerformed(evt);
             }
         });
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
         jLabel1.setText("el Hotel");
@@ -76,16 +67,32 @@ public class RoomResults extends javax.swing.JFrame {
 
         roomNumber.setText("Room 217");
 
-        roomType_label.setText("King Size");
+        roomType.setText("King Size");
 
-        jButton1.setText("Confirm Booking");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("Reservation Code");
+
+        reservationCode.setText("aeuh839t39");
+
+        home_Button.setText("Home");
+        home_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                home_ButtonActionPerformed(evt);
             }
         });
 
-        cost_label.setText("$120");
+        cancelReservation_Button.setText("Cancel Reservation");
+        cancelReservation_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelReservation_ButtonActionPerformed(evt);
+            }
+        });
+
+        modifyReservation_Button.setText("Modify Reservation");
+        modifyReservation_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyReservation_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,15 +101,12 @@ public class RoomResults extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lastName)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(firstName)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cost_label))))
+                                    .addComponent(firstName)
+                                    .addComponent(lastName)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,12 +125,14 @@ public class RoomResults extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(roomNumber)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(roomType_label))
+                                        .addComponent(roomType))
                                     .addComponent(stayDuration))))
                         .addGap(0, 104, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(modifyReservation_Button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelReservation_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(home_Button)))
                 .addContainerGap())
@@ -139,9 +145,7 @@ public class RoomResults extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstName)
-                    .addComponent(cost_label))
+                .addComponent(firstName)
                 .addGap(18, 18, 18)
                 .addComponent(lastName)
                 .addGap(18, 18, 18)
@@ -149,15 +153,16 @@ public class RoomResults extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roomNumber)
-                    .addComponent(roomType_label))
+                    .addComponent(roomType))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(reservationCode))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(home_Button)
-                    .addComponent(jButton1))
+                    .addComponent(cancelReservation_Button)
+                    .addComponent(modifyReservation_Button))
                 .addContainerGap())
         );
 
@@ -171,13 +176,24 @@ public class RoomResults extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PaymentScreen frame = new PaymentScreen();
-        frame.setLabels(foundReservation);
+    private void home_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_Button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_home_Button1ActionPerformed
+
+    private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION)
+            {
+                    //ReservationDatabase.Remove(reservation);
+            }
+    }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
+
+    private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
+        CreateReservation frame = new CreateReservation();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
-        frame.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        frame.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyReservation_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,56 +212,38 @@ public class RoomResults extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RoomResults().setVisible(true);
+                new ExistingReservationResults().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cost_label;
+    private javax.swing.JButton cancelReservation_Button;
     private javax.swing.JLabel firstName;
     private javax.swing.JButton home_Button;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton home_Button1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lastName;
+    private javax.swing.JButton modifyReservation_Button;
     private javax.swing.JLabel reservationCode;
     private javax.swing.JLabel roomNumber;
-    private javax.swing.JLabel roomType_label;
+    private javax.swing.JLabel roomType;
     private javax.swing.JLabel stayDuration;
     // End of variables declaration//GEN-END:variables
-    
-    void setLabels(Calendar startDate, Calendar endDate, int roomType)
-    {
-        int durationOfStay;
-        foundReservation =  = ReservationDatabase.querey(Calendar startDate, Calendar endDate, int roomType);
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        //stayDuration.setText(sdf.format(startDate) + " until " + sdf.format(endDate));    Something messed up here
-        cost_label.setText(Double.toString(reservation.getPrice() * durationOfStay));
-        roomNumber.setText(reservation.getRoomNumber());
-        roomType_label.setText(reservation.getRoomType());
-        
-    }
-    
-    public static long daysBetween(Calendar startDate, Calendar endDate) {
-        long end = endDate.getTimeInMillis();
-        long start = startDate.getTimeInMillis();
-        return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
-    }
-    
-    Reservation foundReservation;
 }
