@@ -7,6 +7,8 @@ package hotel.GUIFrames.Guest;
 
 import hotel.GUIFrames.CreateReservation;
 import hotel.GUIFrames.Welcome;
+import hotel.HotelSystem;
+import hotel.ReservationDatabase;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +54,6 @@ public class GuestEnterReservation extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("54he8t39eu");
 
         modifyReservation_Button.setText("Modify Reservation");
         modifyReservation_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -126,10 +127,18 @@ public class GuestEnterReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
-        CreateReservation frame = new CreateReservation();
-        frame.setLocationRelativeTo(this);
-        this.setVisible(false);
-        frame.setVisible(true);
+        //if (HotelSystem.lookUpReservation(Integer.parseInt(jTextField1.getText())) != null)
+        //{
+            CreateReservation frame = new CreateReservation();
+            frame.setLocationRelativeTo(this);
+            this.setVisible(false);
+            frame.setVisible(true);
+        //}
+        
+        //else 
+        //{
+        //    JOptionPane.showMessageDialog(null, "The provided reservation code does not exist.");            
+        //}
     }//GEN-LAST:event_modifyReservation_ButtonActionPerformed
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
@@ -140,11 +149,15 @@ public class GuestEnterReservation extends javax.swing.JFrame {
     }//GEN-LAST:event_home_ButtonActionPerformed
 
     private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
-        int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        //if (HotelSystem.lookUpReservation(Integer.parseInt(jTextField1.getText())) != null)
+        //{
+            int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION)
             {
-                    //ReservationDatabase.Remove(reservation);
+                    //HotelSystem.Remove(reservation);
+                    home_ButtonActionPerformed(null);
             }
+        //}
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     /**

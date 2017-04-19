@@ -5,8 +5,10 @@
  */
 package hotel.GUIFrames;
 
-import hotel.GUIFrames.RoomResults;
-import hotel.GUIFrames.Welcome;
+import hotel.HotelSystem;
+import hotel.Reservation;
+import hotel.Room;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -132,9 +134,10 @@ public class CreateReservation extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(startDate_Chooser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(endDate_Chooser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(endDate_Chooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                        .addComponent(startDate_Chooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68))))
         );
@@ -155,7 +158,7 @@ public class CreateReservation extends javax.swing.JFrame {
                         .addComponent(startDate_Chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(endDate_Chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -184,12 +187,18 @@ public class CreateReservation extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Start Date must be before End Date");
         }
         else 
-        {
-            RoomResults frame = new RoomResults();
-            frame.setLocationRelativeTo(this);
-            frame.setLabels(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), roomType_Chooser.getSelectedIndex());
-            this.setVisible(false);
-            frame.setVisible(true);
+        {  
+            ArrayList<Room> rooms = new ArrayList<Room>();
+            rooms = HotelSystem.findAvailableRoom(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar());
+            if (rooms != null)
+            {
+                Reservation tempRes = new Reservation("0", rooms.get(0).getRoomNumber(), rooms.get(0).getCost(), 9.00, "First", "Last", startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar());
+                RoomResults frame = new RoomResults();
+                frame.setReservation(tempRes);
+                frame.setLocationRelativeTo(this);
+                this.setVisible(false);
+                frame.setVisible(true);
+            }
         }
     }//GEN-LAST:event_findRooms_ButtonActionPerformed
 
@@ -260,4 +269,5 @@ public class CreateReservation extends javax.swing.JFrame {
     private javax.swing.JList<String> roomType_Chooser;
     private com.toedter.calendar.JDateChooser startDate_Chooser;
     // End of variables declaration//GEN-END:variables
+
 }

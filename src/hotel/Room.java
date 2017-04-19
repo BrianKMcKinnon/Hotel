@@ -81,4 +81,16 @@ public class Room {
     {
         return roomNumber;
     }
+    
+    public roomType getRoomType()
+    {
+        return type;
+    }
+    
+    public String getRoomTypeString()
+    {
+        return (type.name());
+    }
+    
+    
 }

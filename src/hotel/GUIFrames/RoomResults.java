@@ -5,7 +5,7 @@
  */
 package hotel.GUIFrames;
 
-import Hotel.ReservationDatabase;
+import hotel.ReservationDatabase;
 import hotel.GUIFrames.Guest.PaymentScreen;
 import hotel.Reservation;
 import hotel.Room;
@@ -36,24 +36,22 @@ public class RoomResults extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel8 = new javax.swing.JLabel();
-        reservationCode = new javax.swing.JLabel();
         home_Button = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        firstName = new javax.swing.JLabel();
-        lastName = new javax.swing.JLabel();
-        stayDuration = new javax.swing.JLabel();
-        roomNumber = new javax.swing.JLabel();
-        roomType_label = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cost_label = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        startDate_label = new javax.swing.JLabel();
+        endDate_label = new javax.swing.JLabel();
+        roomType_label = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        totalCost_label = new javax.swing.JLabel();
+        rate_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel8.setText("Reservation Code");
-
-        reservationCode.setText("aeuh839t39");
 
         home_Button.setText("Home");
         home_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -68,16 +66,6 @@ public class RoomResults extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Welcome Guest");
 
-        firstName.setText("Chandler");
-
-        lastName.setText("Davidson");
-
-        stayDuration.setText("October 15, 2017 until October 19, 2017");
-
-        roomNumber.setText("Room 217");
-
-        roomType_label.setText("King Size");
-
         jButton1.setText("Confirm Booking");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +73,25 @@ public class RoomResults extends javax.swing.JFrame {
             }
         });
 
-        cost_label.setText("$120");
+        jLabel3.setText("Check In Date:");
+
+        jLabel4.setText("Check Out Date:");
+
+        jLabel5.setText("Room Type:");
+
+        startDate_label.setText("October 15, 2017");
+
+        endDate_label.setText("October 19, 2017");
+
+        roomType_label.setText("King Size");
+
+        jLabel9.setText("Cost Per Night:");
+
+        jLabel10.setText("Total:");
+
+        totalCost_label.setText("$400");
+
+        rate_label.setText("$100");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,36 +100,33 @@ public class RoomResults extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lastName)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(firstName)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cost_label))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(jLabel2))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(reservationCode))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(roomNumber)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(roomType_label))
-                                    .addComponent(stayDuration))))
-                        .addGap(0, 104, Short.MAX_VALUE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(startDate_label))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel4)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel10))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(roomType_label)
+                                                    .addComponent(endDate_label)
+                                                    .addComponent(totalCost_label)
+                                                    .addComponent(rate_label))))))))
+                        .addGap(0, 185, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
@@ -138,23 +141,27 @@ public class RoomResults extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(startDate_label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstName)
-                    .addComponent(cost_label))
-                .addGap(18, 18, 18)
-                .addComponent(lastName)
-                .addGap(18, 18, 18)
-                .addComponent(stayDuration)
+                    .addComponent(jLabel4)
+                    .addComponent(endDate_label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roomNumber)
+                    .addComponent(jLabel5)
                     .addComponent(roomType_label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(reservationCode))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(rate_label))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(totalCost_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(home_Button)
                     .addComponent(jButton1))
@@ -173,7 +180,7 @@ public class RoomResults extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PaymentScreen frame = new PaymentScreen();
-        frame.setLabels(foundReservation);
+        //frame.setLabels(foundReservation);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
@@ -215,29 +222,28 @@ public class RoomResults extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cost_label;
-    private javax.swing.JLabel firstName;
+    private javax.swing.JLabel endDate_label;
     private javax.swing.JButton home_Button;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lastName;
-    private javax.swing.JLabel reservationCode;
-    private javax.swing.JLabel roomNumber;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel rate_label;
     private javax.swing.JLabel roomType_label;
-    private javax.swing.JLabel stayDuration;
+    private javax.swing.JLabel startDate_label;
+    private javax.swing.JLabel totalCost_label;
     // End of variables declaration//GEN-END:variables
     
-    void setLabels(Calendar startDate, Calendar endDate, int roomType)
-    {
-        int durationOfStay;
-        foundReservation =  = ReservationDatabase.querey(Calendar startDate, Calendar endDate, int roomType);
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        //stayDuration.setText(sdf.format(startDate) + " until " + sdf.format(endDate));    Something messed up here
-        cost_label.setText(Double.toString(reservation.getPrice() * durationOfStay));
-        roomNumber.setText(reservation.getRoomNumber());
-        roomType_label.setText(reservation.getRoomType());
+    public void setLabels() {
+        startDate_label.setText(reservation.getStartDate().toString());
+        endDate_label.setText(reservation.getEndDate().toString());
+        rate_label.setText(Double.toString(reservation.getRoomRate()));
+        roomType_label.setText(reservation.getRoom().getRoomTypeString());
+        totalCost_label.setText(Double.toString(reservation.getDurationOfStay() * reservation.getRoomRate()));
         
     }
     
@@ -247,5 +253,9 @@ public class RoomResults extends javax.swing.JFrame {
         return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
     }
     
-    Reservation foundReservation;
+    Reservation reservation;
+    
+    public void setReservation(Reservation new_reservation) {
+        reservation = new_reservation;
+    }
 }

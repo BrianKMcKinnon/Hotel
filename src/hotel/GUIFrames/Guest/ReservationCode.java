@@ -18,6 +18,7 @@ public class ReservationCode extends javax.swing.JFrame {
      */
     public ReservationCode() {
         initComponents();
+        
     }
 
     /**

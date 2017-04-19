@@ -5,7 +5,7 @@
  */
 package hotel.GUIFrames;
 
-import Hotel.ReservationDatabase;
+import hotel.ReservationDatabase;
 import hotel.Reservation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -128,7 +128,7 @@ public class ReservationListResults extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ReservationDatabase.cancelReservation(reservations.get(jList1.getSelectedIndex()));
+        //HotelSystem.cancelReservation(reservations.get(jList1.getSelectedIndex()));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

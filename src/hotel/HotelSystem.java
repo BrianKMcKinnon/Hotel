@@ -50,7 +50,7 @@ public class HotelSystem
      * @param endDate
      * @return 
      */
-    public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate){
+    public static ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate){
         searchResultRooms.clear();
         ArrayList<Room> temp = null;
         boolean occupied=false;

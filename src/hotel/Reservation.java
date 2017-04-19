@@ -5,6 +5,7 @@
 
 package hotel;
 import static java.sql.Types.NULL;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -15,6 +16,7 @@ public class Reservation {
     private HotelSystem system;
     private String reservationNumber;
     private int roomNumber;
+    private int durationOfStay;
     private double roomRate;
     private double roomTotal;
     private Guest guest;
@@ -53,7 +55,13 @@ public class Reservation {
             // returns null if available, so not null if not free
             reservationNumber = generateRandom();
         }
+        
         return reservationNumber;
+    }
+    
+    public int getDurationOfStay()
+    {
+        return (int) ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
     }
     
     /**

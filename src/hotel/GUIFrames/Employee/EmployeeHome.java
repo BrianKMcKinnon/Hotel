@@ -50,7 +50,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jLabel1.setText("el Hotel");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Welcome Guest");
+        jLabel2.setText("Welcome Employee");
 
         makeReservation_Button.setText("New Reservation");
         makeReservation_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +67,11 @@ public class EmployeeHome extends javax.swing.JFrame {
         });
 
         jButton1.setText("Manage");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +84,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel2))
                     .addComponent(jLabel1))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -127,6 +132,10 @@ public class EmployeeHome extends javax.swing.JFrame {
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

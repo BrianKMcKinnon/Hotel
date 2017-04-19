@@ -131,9 +131,9 @@ public class EmployeeSearchReservation extends javax.swing.JFrame {
         String lastName = jTextField3.getText();
         String resCode = jTextField4.getText();
         
-        //ReservationDatabase.querey(cal);
-        //ReservationDatabase.querey(firstName + lastName);
-        //ReservationDatabase.querey(resCode);
+        //HotelSystem.querey(cal);
+        //HotelSystem.querey(firstName + lastName);
+        //HotelSystem.querey(resCode);
         
         ReservationListResults frame = new ReservationListResults();
         frame.setLocationRelativeTo(this);
