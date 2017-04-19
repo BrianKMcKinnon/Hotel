@@ -7,6 +7,7 @@ package hotel.GUIFrames.Guest;
 
 import hotel.GUIFrames.CreateReservation;
 import hotel.GUIFrames.Welcome;
+import hotel.HotelSystem;
 
 
 /**
@@ -14,13 +15,19 @@ import hotel.GUIFrames.Welcome;
  * @author Chandler
  */
 public class GuestHome extends javax.swing.JFrame {
-
+    HotelSystem hs;
     /**
      * Creates new form GuestHomeScreen1
      */
     public GuestHome() {
         initComponents();
     }
+
+    public GuestHome(HotelSystem hotelsystem) {
+        initComponents();
+        hs = hotelsystem;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,21 +114,21 @@ public class GuestHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void makeReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReservation_ButtonActionPerformed
-        CreateReservation frame = new CreateReservation();
+        CreateReservation frame = new CreateReservation(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_makeReservation_ButtonActionPerformed
 
     private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
-        GuestEnterReservation frame = new GuestEnterReservation();
+        GuestEnterReservation frame = new GuestEnterReservation(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     private void logout_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_ButtonActionPerformed
-        Welcome frame = new Welcome();
+        Welcome frame = new Welcome(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);

@@ -25,11 +25,12 @@ public class Reservation {
     //private ArrayList<Room> rooms;
     private Calendar startDate;
     private Calendar endDate;
+    private Room.roomType type;
     
     /**
      * Class constructor 
      */
-    public Reservation(String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end)
+    public Reservation(String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end, Room.roomType roomtype)
     {
             reservationNumber = res;
             roomNumber = roomNum;
@@ -39,6 +40,7 @@ public class Reservation {
             lastName = last;
             startDate = start;
             endDate = end;
+            type = roomtype;
     }
     
     /**
@@ -49,9 +51,9 @@ public class Reservation {
     {
         long resNum = 0;
         reservationNumber = generateRandom();
-        resNum = Integer.parseInt(reservationNumber);
+        //resNum = Integer.toString(reservationNumber);
         // ensure the number is not taken
-        while((system.lookUpReservation(resNum)) != NULL)
+        while((system.lookUpReservation(reservationNumber)) == null)
         {
             // returns null if available, so not null if not free
             reservationNumber = generateRandom();
@@ -70,7 +72,7 @@ public class Reservation {
         return firstName;
     }
     
-    public String geetLastName()
+    public String getLastName()
     {
         return lastName;
     }
@@ -154,7 +156,9 @@ public class Reservation {
         clone = (Calendar)endDate.clone();
         return clone;
     }
-    
+    public String getRoomTypeString(){
+        return type.name();
+    }
     /**
      * Sets additional notes taken from a customer
      * @param notes 

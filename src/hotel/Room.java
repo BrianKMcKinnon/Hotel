@@ -73,6 +73,24 @@ public class Room {
         return roomCost;
     }
     
+    public roomType translateType(int input){
+        
+        switch(input){
+            case 0 :
+                return roomType.SUITE;
+            case 1 :
+                return roomType.KING;
+            case 2 :
+                return roomType.QUEEN;
+            case 3 :
+                return roomType.SINGLE;
+            default :
+                return roomType.SUITE;
+        }
+        
+    }
+    
+    
     /**
      * Obtains a room number
      * @return room number
@@ -89,8 +107,26 @@ public class Room {
     
     public String getRoomTypeString()
     {
+        System.out.println("room type to string");
         return (type.name());
     }
+    
+    public int getRoomTypeInt()
+    {
+        if(null == type)
+            return 3;
+        else switch (type) {
+            case SUITE:
+                return 0;
+            case KING:
+                return 1;
+            case QUEEN:
+                return 2;
+            default:
+                return 3;
+        }
+    }
+    
     
     
 }

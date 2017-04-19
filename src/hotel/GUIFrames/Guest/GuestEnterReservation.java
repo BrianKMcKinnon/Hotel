@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package hotel.GUIFrames.Guest;
-
+import hotel.Reservation;
 import hotel.GUIFrames.CreateReservation;
 import hotel.GUIFrames.Welcome;
 import hotel.HotelSystem;
@@ -16,12 +16,17 @@ import javax.swing.JOptionPane;
  * @author Chandler
  */
 public class GuestEnterReservation extends javax.swing.JFrame {
-
+    HotelSystem hs;
     /**
      * Creates new form GuestCancelReservation
      */
     public GuestEnterReservation() {
         initComponents();
+    }
+
+    GuestEnterReservation(HotelSystem hotelsystem) {
+        initComponents();
+        hs = hotelsystem;
     }
 
     /**
@@ -127,13 +132,14 @@ public class GuestEnterReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
-        //if (HotelSystem.lookUpReservation(Integer.parseInt(jTextField1.getText())) != null)
-        //{
-            CreateReservation frame = new CreateReservation();
+        Reservation temp = hs.lookUpReservation(jTextField1.getText());
+        if (temp != null)
+        {
+            GuestModifyReservation frame = new GuestModifyReservation(hs,temp);
             frame.setLocationRelativeTo(this);
             this.setVisible(false);
             frame.setVisible(true);
-        //}
+        }
         
         //else 
         //{
@@ -142,22 +148,22 @@ public class GuestEnterReservation extends javax.swing.JFrame {
     }//GEN-LAST:event_modifyReservation_ButtonActionPerformed
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
-        Welcome frame = new Welcome();
+        Welcome frame = new Welcome(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
 
     private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
-        //if (HotelSystem.lookUpReservation(Integer.parseInt(jTextField1.getText())) != null)
-        //{
+        if (hs.lookUpReservation(jTextField1.getText()) != null)
+        {
             int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION)
             {
                     //HotelSystem.Remove(reservation);
                     home_ButtonActionPerformed(null);
             }
-        //}
+        }
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     /**

@@ -6,6 +6,7 @@
 package hotel.GUIFrames.Guest;
 
 import hotel.GUIFrames.Welcome;
+import hotel.HotelSystem;
 import hotel.Payment;
 import hotel.Reservation;
 import java.text.SimpleDateFormat;
@@ -22,6 +23,10 @@ public class PaymentScreen extends javax.swing.JFrame {
      */
     public PaymentScreen() {
         initComponents();
+    }
+
+    public PaymentScreen(HotelSystem hs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

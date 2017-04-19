@@ -7,6 +7,7 @@ package hotel.GUIFrames;
 
 import hotel.ReservationDatabase;
 import hotel.GUIFrames.Guest.PaymentScreen;
+import hotel.HotelSystem;
 import hotel.Reservation;
 import hotel.Room;
 import java.text.SimpleDateFormat;
@@ -19,12 +20,27 @@ import javax.swing.JList;
  * @author Chandler
  */
 public class RoomResults extends javax.swing.JFrame {
-
+    HotelSystem hs = null;
+    Reservation res;
     /**
      * Creates new form RoomResults
+
      */
-    public RoomResults() {
+
+    RoomResults(HotelSystem hotelsystem, Reservation tempRes) {
         initComponents();
+        System.out.println("entered RoomResults");
+        hs = hotelsystem;
+        res = tempRes;
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = format1.format(tempRes.getStartDate().getTime());
+        String endDate = format1.format(tempRes.getEndDate().getTime());
+        startDate_label.setText(startDate);
+        System.out.println("made it through startDate");
+        endDate_label.setText(endDate);
+        rate_label.setText(Double.toString(tempRes.getRoomRate()));
+        roomType_label.setText(tempRes.getRoomTypeString());
+        totalCost_label.setText(Double.toString(tempRes.getDurationOfStay() * tempRes.getRoomRate()));
     }
 
     /**
@@ -172,14 +188,14 @@ public class RoomResults extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
-        Welcome frame = new Welcome();
+        Welcome frame = new Welcome(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PaymentScreen frame = new PaymentScreen();
+        PaymentScreen frame = new PaymentScreen(hs);
         //frame.setLabels(foundReservation);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
@@ -189,37 +205,37 @@ public class RoomResults extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RoomResults().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new RoomResults(hs,res).setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel endDate_label;
@@ -239,11 +255,7 @@ public class RoomResults extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     public void setLabels() {
-        startDate_label.setText(reservation.getStartDate().toString());
-        endDate_label.setText(reservation.getEndDate().toString());
-        rate_label.setText(Double.toString(reservation.getRoomRate()));
-        roomType_label.setText(reservation.getRoom().getRoomTypeString());
-        totalCost_label.setText(Double.toString(reservation.getDurationOfStay() * reservation.getRoomRate())); 
+         
     }
     
     public static long daysBetween(Calendar startDate, Calendar endDate) {
@@ -251,10 +263,11 @@ public class RoomResults extends javax.swing.JFrame {
         long start = startDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
     }
+    //private final HotelSystem hotelsystem;
     
-    Reservation reservation;
+    //Reservation reservation;
     
-    public void setReservation(Reservation new_reservation) {
-        reservation = new_reservation;
-    }
+//    public void setReservation(Reservation new_reservation) {
+//        reservation = new_reservation;
+//    }
 }

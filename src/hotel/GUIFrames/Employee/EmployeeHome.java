@@ -7,18 +7,28 @@ package hotel.GUIFrames.Employee;
 
 import hotel.GUIFrames.CreateReservation;
 import hotel.GUIFrames.Welcome;
+import hotel.HotelSystem;
 
 /**
  *
  * @author Chandler
  */
 public class EmployeeHome extends javax.swing.JFrame {
-
+    HotelSystem hs;
     /**
      * Creates new form EmployeeHome
      */
     public EmployeeHome() {
         initComponents();
+    }
+
+    public EmployeeHome(HotelSystem hotelsystem) {
+        initComponents();
+        hs = hotelsystem;
+    }
+
+    public EmployeeHome(HotelSystem hs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

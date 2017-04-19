@@ -18,11 +18,9 @@ public class HotelSystem
     // variables
     public String hotelName;
     public int numRooms;
-    public ArrayList<Employee> employees;
-    public ArrayList<Manager> managers;
-    public ArrayList<Guest> guests;
     private ArrayList<Room> allRooms;
     private ArrayList<Room> searchResultRooms;
+    private ArrayList<Reservation> searchResultReservations;
     private ReservationDatabase rd;
     
     /**
@@ -30,16 +28,22 @@ public class HotelSystem
      * @param roomCount 
      */
     public HotelSystem(int roomCount){
+        allRooms = new ArrayList<Room>();
+        searchResultRooms = new ArrayList<Room>();
+        searchResultReservations = new ArrayList<Reservation>();
         for(int i=0;i<roomCount;i++){
-            if(i%2==0){
-                //Every other room is a King room
-                //King max occupancy is 2 people
-                //King room rate is $100.00/night
-                allRooms.add(new Room(i+1, 2, 100.00, 0));
+            if(i%4==0){
+                allRooms.add(new Room(i+1, 300.00, Room.roomType.SUITE));
             }
-            else
-                allRooms.add(new Room(i+1, 4, 125.00, 0)); // Queen room 
-                
+            else if(i%4==1){
+                allRooms.add(new Room(i+1, 200.00, Room.roomType.KING));
+            }
+            else if(i%4==2){
+                allRooms.add(new Room(i+1, 150.00, Room.roomType.QUEEN)); 
+            }
+            else{
+                allRooms.add(new Room(i+1, 100.00, Room.roomType.SINGLE));
+            }
         }
         rd = new ReservationDatabase();
     }
@@ -50,21 +54,51 @@ public class HotelSystem
      * @param endDate
      * @return 
      */
-    public static ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate){
+    public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate){
+        System.out.println("Entered findAvailableRoom (Calendar, Calendar)");
         searchResultRooms.clear();
         ArrayList<Room> temp = null;
         boolean occupied=false;
         temp = rd.queryDatabase(startDate, endDate);     //occupied rooms are returned
-        for(int i=1;i<=numRooms-temp.size();i++){
-            occupied=false;
-            for(int j=0;j<temp.size();j++){
-                if(temp.get(j).roomNumber == i){
-                    occupied=true;      //if the current room number (i) is one of the room numbers held in temp, mark occupied
+        if(temp != null){
+            for(int i=1;i<=numRooms-temp.size();i++){
+                occupied=false;
+                for(int j=0;j<temp.size();j++){
+                    if(temp.get(j).getRoomNumber() == i){
+                        occupied=true;      //if the current room number (i) is one of the room numbers held in temp, mark occupied
+                    }
+                }
+                if(!occupied){              //if current room not occupied, add to searchResultRooms
+                    searchResultRooms.add(temp.get(i));
                 }
             }
-            if(!occupied){              //if current room not occupied, add to searchResultRooms
-                searchResultRooms.add(temp.get(i));
+        }
+        else{
+            searchResultRooms = (ArrayList<Room>) allRooms.clone();
+        }
+        return searchResultRooms;
+    }
+    
+    public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate, Room.roomType roomtype){
+        searchResultRooms.clear();
+        ArrayList<Room> temp = null;
+        boolean occupied=false;
+        temp = rd.queryDatabase(startDate, endDate, roomtype);     //occupied rooms are returned
+        if(temp != null){
+            for(int i=1;i<=numRooms-temp.size();i++){
+                occupied=false;
+                for(int j=0;j<temp.size();j++){
+                    if(temp.get(j).getRoomNumber() == i){
+                        occupied=true;      //if the current room number (i) is one of the room numbers held in temp, mark occupied
+                    }
+                }
+                if(!occupied){              //if current room not occupied, add to searchResultRooms
+                    searchResultRooms.add(temp.get(i));
+                }
             }
+        }
+        else{
+            searchResultRooms = (ArrayList<Room>) allRooms.clone();
         }
         return searchResultRooms;
     }
@@ -82,7 +116,7 @@ public class HotelSystem
         for(int i=1;i<=numRooms-temp.size();i++){
             occupied=false;
             for(int j=0;j<temp.size();j++){
-                if(temp.get(j).roomNumber == i){
+                if(temp.get(j).getRoomNumber() == i){
                     occupied=true;      //if the current room number (i) is one of the room numbers held in temp, mark occupied
                 }
             }
@@ -98,7 +132,7 @@ public class HotelSystem
      * @param res
      * @return 
      */
-    public Reservation lookUpReservation(int res){
+    public Reservation lookUpReservation(String res){
         Reservation result = rd.queryDatabase(res);
         return result;
     }
@@ -109,19 +143,21 @@ public class HotelSystem
      * @param endDate
      * @return 
      */
-    public ArrayList<Room> findOccupiedRoom(Calendar startDate, Calendar endDate){
-        searchResultRooms = rd.queryDatabase(startDate, endDate, false);
-        return searchResultRooms;
+    public ArrayList<Reservation> findOccupiedRoom(Calendar startDate, Calendar endDate){
+        searchResultReservations = rd.findReservations(startDate, endDate);
+        return searchResultReservations;
     }
     
     /**
      * Add java documentation
+     * @param firstName
      * @param lastName
      * @return 
      */
-    public ArrayList<Room> findOccupiedRoom(String lastName){
-        searchResultRooms = rd.queryDatabase(lastName);
-        return searchResultRooms;
+    public ArrayList<Reservation> findOccupiedRoom(String firstName,String lastName){
+        searchResultReservations.clear();
+        searchResultReservations = rd.queryDatabase(firstName,lastName);
+        return searchResultReservations;
     }
     
     /**

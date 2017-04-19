@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.GUIFrames;
+package hotel.GUIFrames.Guest;
 
+import hotel.GUIFrames.RoomResults;
+import hotel.GUIFrames.Welcome;
 import hotel.HotelSystem;
 import hotel.Reservation;
 import hotel.Room;
@@ -12,38 +14,28 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
-
 /**
  *
- * @author Chandler
+ * @author brian
  */
-public class CreateReservation extends javax.swing.JFrame {
+public class GuestModifyReservation extends javax.swing.JFrame {
     HotelSystem hs;
+    Reservation res;
     /**
-     * Creates new form GuestReservationScreen1
+     * Creates new form GuestModifyReservation
      */
-    
-    public CreateReservation(HotelSystem hotelsystem) {
+    public GuestModifyReservation(HotelSystem hotelsystem, Reservation reservation) {
         initComponents();
-        initCalendars();        
-        String[] roomTypes = { "Suite", "King", "Queen", "Single", "No Preference" };
-        roomType_Chooser.setListData(roomTypes);
-        roomType_Chooser.setSelectedIndex(0);
-        hs=hotelsystem;
-    }
-
-    public CreateReservation(HotelSystem hs, Reservation temp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    private void initCalendars()
-    {
-        Calendar tempCal = Calendar.getInstance();
+        hs = hotelsystem;
+        res = reservation;
+        initReservation(); 
         
-        startDate_Chooser.setCalendar(tempCal);
-        tempCal.add(Calendar.DATE, 1); // Set to tomorrow's date
-        endDate_Chooser.setCalendar(tempCal);
+    }
+    private void initReservation()
+    {
+        startDate_Chooser.setCalendar(res.getStartDate());
+        endDate_Chooser.setCalendar(res.getEndDate());
+        
     }
 
     /**
@@ -55,36 +47,19 @@ public class CreateReservation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        findRooms_Button = new javax.swing.JButton();
         home_Button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         roomType_Chooser = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         startDate_Chooser = new com.toedter.calendar.JDateChooser();
         endDate_Chooser = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        findRooms_Button1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Book a Reservation");
-
-        jLabel3.setText("Start Date");
-
-        jLabel4.setText("End Date");
-
-        jLabel5.setText("Room Type");
-
-        findRooms_Button.setText("Find Rooms");
-        findRooms_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findRooms_ButtonActionPerformed(evt);
-            }
-        });
 
         home_Button.setText("Home");
         home_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +88,22 @@ public class CreateReservation extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
         jLabel1.setText("el Hotel");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Book a Reservation");
+
+        jLabel3.setText("Start Date");
+
+        jLabel4.setText("End Date");
+
+        jLabel5.setText("Room Type");
+
+        findRooms_Button1.setText("Modify Reservation");
+        findRooms_Button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyRooms_ButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,8 +115,8 @@ public class CreateReservation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(findRooms_Button)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(findRooms_Button1)
+                                .addGap(18, 18, 18)
                                 .addComponent(home_Button))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +137,7 @@ public class CreateReservation extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(endDate_Chooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                                         .addComponent(startDate_Chooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68))))
         );
@@ -172,10 +163,10 @@ public class CreateReservation extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(home_Button)
-                            .addComponent(findRooms_Button))
+                            .addComponent(findRooms_Button1))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(99, 99, 99))))
         );
@@ -189,52 +180,14 @@ public class CreateReservation extends javax.swing.JFrame {
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
-    
-    
-    private void findRooms_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findRooms_ButtonActionPerformed
-        if (startDate_Chooser.getCalendar().compareTo(endDate_Chooser.getCalendar()) > 0)   // Check if startDate is before endDate
-        {
-            JOptionPane.showMessageDialog(null, "Start Date must be before End Date");
-        }
-        else 
-        {  
-            ArrayList<Room> rooms = new ArrayList<Room>();
-            rooms = null;
-            Room tempRoom = hs.allRooms().get(0);
-            Calendar tempStart = Calendar.getInstance();
-            tempStart = startDate_Chooser.getCalendar();
-            System.out.println(Integer.toString(roomType_Chooser.getSelectedIndex()));
-            rooms = hs.findAvailableRoom(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), tempRoom.translateType(roomType_Chooser.getSelectedIndex()));
-            Calendar tempEnd = Calendar.getInstance();
-            System.out.println(Integer.toString(rooms.size()));
-            tempEnd = endDate_Chooser.getCalendar();
-            if (rooms != null)
-            {
-                Reservation tempRes = new Reservation("0000000000", rooms.get(0).getRoomNumber(), rooms.get(0).getCost(), 0.00, "First", "Last", tempStart, tempEnd, rooms.get(0).getRoomType());
-                if(tempRes.getStartDate() != null)
-                {
-                    
-                    System.out.println("about to enter RoomResults");
-                    RoomResults frame = new RoomResults(hs, tempRes);
-                    //frame.setReservation(tempRes);
-                    frame.setLocationRelativeTo(this);
-                    this.setVisible(false);
-                    frame.setVisible(true);
-                }
-                else
-                {
-                    System.out.println("getStartDate = null");
-                }
-            }
-            else{
-                System.out.println("No available rooms");
-            }
-        }
-    }//GEN-LAST:event_findRooms_ButtonActionPerformed
 
     private void roomType_ChooserAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_roomType_ChooserAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_roomType_ChooserAncestorAdded
+
+    private void modifyRooms_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyRooms_ButtonActionPerformed
+        
+    }//GEN-LAST:event_modifyRooms_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,42 +206,27 @@ public class CreateReservation extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CreateReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(GuestModifyReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CreateReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(GuestModifyReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(CreateReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(GuestModifyReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CreateReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(GuestModifyReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new CreateReservation(hs).setVisible(true);
+//                new GuestModifyReservation().setVisible(true);
 //            }
 //        });
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser endDate_Chooser;
-    private javax.swing.JButton findRooms_Button;
+    private javax.swing.JButton findRooms_Button1;
     private javax.swing.JButton home_Button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -299,5 +237,4 @@ public class CreateReservation extends javax.swing.JFrame {
     private javax.swing.JList<String> roomType_Chooser;
     private com.toedter.calendar.JDateChooser startDate_Chooser;
     // End of variables declaration//GEN-END:variables
-
 }

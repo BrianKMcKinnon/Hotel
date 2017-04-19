@@ -7,18 +7,26 @@ package hotel.GUIFrames;
 
 import hotel.GUIFrames.Employee.EmployeeHome;
 import hotel.GUIFrames.Guest.GuestHome;
+import hotel.HotelSystem;
 
 /**
  *
  * @author Chandler
  */
 public class Welcome extends javax.swing.JFrame {
+    
+    HotelSystem hs;
 
     /**
      * Creates new form NewJFrame
      */
     public Welcome() {
         initComponents();
+    }
+
+    public Welcome(HotelSystem hotelsystem) {
+        initComponents();
+        hs = hotelsystem;
     }
 
     /**
@@ -84,14 +92,14 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GuestHome frame = new GuestHome();
-        frame.setLocationRelativeTo(this);
-        this.setVisible(false);
+        GuestHome frame = new GuestHome(hs); // Creates new GuesHome JFrame
+        frame.setLocationRelativeTo(this);  // Sets location
+        this.setVisible(false);             // Sets invisibility
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        EmployeeHome frame = new EmployeeHome();
+        EmployeeHome frame = new EmployeeHome(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
@@ -130,7 +138,8 @@ public class Welcome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Welcome().setVisible(true);
+                HotelSystem hs = new HotelSystem(200);
+                new Welcome(hs).setVisible(true);
             }
         });
     }
