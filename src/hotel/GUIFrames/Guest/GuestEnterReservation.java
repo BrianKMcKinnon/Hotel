@@ -6,6 +6,7 @@
 package hotel.GUIFrames.Guest;
 import hotel.Reservation;
 import hotel.GUIFrames.CreateReservation;
+import hotel.GUIFrames.ExistingReservationResults;
 import hotel.GUIFrames.Welcome;
 import hotel.HotelSystem;
 import hotel.ReservationDatabase;
@@ -45,6 +46,7 @@ public class GuestEnterReservation extends javax.swing.JFrame {
         modifyReservation_Button = new javax.swing.JButton();
         home_Button = new javax.swing.JButton();
         cancelReservation_Button = new javax.swing.JButton();
+        viewReservaion_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +83,13 @@ public class GuestEnterReservation extends javax.swing.JFrame {
             }
         });
 
+        viewReservaion_Button.setText("View");
+        viewReservaion_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReservaion_ButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +114,8 @@ public class GuestEnterReservation extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifyReservation_Button)
-                    .addComponent(cancelReservation_Button))
+                    .addComponent(cancelReservation_Button)
+                    .addComponent(viewReservaion_Button))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,7 +129,9 @@ public class GuestEnterReservation extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(viewReservaion_Button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(modifyReservation_Button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -165,6 +177,13 @@ public class GuestEnterReservation extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
+
+    private void viewReservaion_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReservaion_ButtonActionPerformed
+        ExistingReservationResults frame = new ExistingReservationResults();
+        frame.setLocationRelativeTo(this);
+        this.setVisible(false);
+        frame.setVisible(true);
+    }//GEN-LAST:event_viewReservaion_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,5 +231,6 @@ public class GuestEnterReservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton modifyReservation_Button;
+    private javax.swing.JButton viewReservaion_Button;
     // End of variables declaration//GEN-END:variables
 }

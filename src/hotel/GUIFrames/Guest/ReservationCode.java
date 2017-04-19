@@ -6,6 +6,7 @@
 package hotel.GUIFrames.Guest;
 
 import hotel.GUIFrames.Welcome;
+import hotel.Reservation;
 
 /**
  *
@@ -19,6 +20,11 @@ public class ReservationCode extends javax.swing.JFrame {
     public ReservationCode() {
         initComponents();
         
+    }
+
+    ReservationCode(Reservation res) {
+        initComponents();
+        jTextField1.setText(res.getReservationNumber());
     }
 
     /**
@@ -46,6 +52,7 @@ public class ReservationCode extends javax.swing.JFrame {
 
         jLabel3.setText("Reservation Code");
 
+        jTextField1.setEditable(false);
         jTextField1.setText("uh39u3oe3r");
 
         home_Button.setText("Home");

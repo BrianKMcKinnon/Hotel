@@ -205,12 +205,13 @@ public class CreateReservation extends javax.swing.JFrame {
             tempStart = startDate_Chooser.getCalendar();
             System.out.println(Integer.toString(roomType_Chooser.getSelectedIndex()));
             rooms = hs.findAvailableRoom(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), tempRoom.translateType(roomType_Chooser.getSelectedIndex()));
+            System.out.print(tempRoom.translateType(roomType_Chooser.getAnchorSelectionIndex()));
             Calendar tempEnd = Calendar.getInstance();
             System.out.println(Integer.toString(rooms.size()));
             tempEnd = endDate_Chooser.getCalendar();
             if (rooms != null)
             {
-                Reservation tempRes = new Reservation("0000000000", rooms.get(0).getRoomNumber(), rooms.get(0).getCost(), 0.00, "First", "Last", tempStart, tempEnd, rooms.get(0).getRoomType());
+                Reservation tempRes = new Reservation(hs, "0000000000", rooms.get(0).getRoomNumber(), rooms.get(0).getCost(), 0.00, "First", "Last", tempStart, tempEnd, rooms.get(0).getRoomType());
                 if(tempRes.getStartDate() != null)
                 {
                     

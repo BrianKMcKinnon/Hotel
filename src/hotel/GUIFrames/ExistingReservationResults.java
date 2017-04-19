@@ -5,6 +5,7 @@
  */
 package hotel.GUIFrames;
 
+import hotel.HotelSystem;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -14,12 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class ExistingReservationResults extends javax.swing.JFrame {
 
+    HotelSystem hs;
     /**
      * Creates new form ReservationResults
      */
     public ExistingReservationResults() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,7 +193,7 @@ public class ExistingReservationResults extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
-        CreateReservation frame = new CreateReservation();
+        CreateReservation frame = new CreateReservation(hs);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);        // TODO add your handling code here:

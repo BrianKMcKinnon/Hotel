@@ -195,8 +195,7 @@ public class RoomResults extends javax.swing.JFrame {
     }//GEN-LAST:event_home_ButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PaymentScreen frame = new PaymentScreen(hs);
-        //frame.setLabels(foundReservation);
+        PaymentScreen frame = new PaymentScreen(hs, res);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);

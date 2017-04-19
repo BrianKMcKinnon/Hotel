@@ -21,12 +21,22 @@ public class PaymentScreen extends javax.swing.JFrame {
     /**
      * Creates new form Payment
      */
+    
+    HotelSystem hs = null;
+    Reservation res = null;
+    
     public PaymentScreen() {
         initComponents();
     }
 
     public PaymentScreen(HotelSystem hs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public PaymentScreen(HotelSystem hotelsystem, Reservation reservation) {
+        initComponents();
+        hs = hotelsystem;
+        res = reservation;
     }
 
     /**
@@ -194,7 +204,9 @@ public class PaymentScreen extends javax.swing.JFrame {
     private void confirm_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm_ButtonActionPerformed
         if (Payment.checkPayment(ccNumber.getText())) // Something broke
         {   
-            ReservationCode frame = new ReservationCode();
+            res.setReservationNumber();
+            hs.makeReservation(res);
+            ReservationCode frame = new ReservationCode(res);
             frame.setLocationRelativeTo(this);
             this.setVisible(false);
             frame.setVisible(true);

@@ -187,7 +187,7 @@ public class ReservationResults extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
-        CreateReservation frame = new CreateReservation();
+        CreateReservation frame = new CreateReservation(hs);
         this.setVisible(false);
         frame.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_modifyReservation_ButtonActionPerformed

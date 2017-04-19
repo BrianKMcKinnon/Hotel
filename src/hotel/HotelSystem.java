@@ -81,11 +81,13 @@ public class HotelSystem
     
     public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate, Room.roomType roomtype){
         searchResultRooms.clear();
+        ArrayList<Room> tempResults = new ArrayList<Room>();
         ArrayList<Room> temp = null;
         boolean occupied=false;
+        System.out.println(roomtype.toString());
         temp = rd.queryDatabase(startDate, endDate, roomtype);     //occupied rooms are returned
         if(temp != null){
-            for(int i=1;i<=numRooms-temp.size();i++){
+            for(int i=0;i<numRooms-temp.size();i++){
                 occupied=false;
                 for(int j=0;j<temp.size();j++){
                     if(temp.get(j).getRoomNumber() == i){
@@ -93,12 +95,17 @@ public class HotelSystem
                     }
                 }
                 if(!occupied){              //if current room not occupied, add to searchResultRooms
-                    searchResultRooms.add(temp.get(i));
+                   
+                    tempResults.add(temp.get(i));
                 }
             }
         }
         else{
-            searchResultRooms = (ArrayList<Room>) allRooms.clone();
+            tempResults = (ArrayList<Room>) allRooms.clone();
+        }
+        for(int i=0;i<tempResults.size();i++){
+            if(tempResults.get(i).getRoomType() == roomtype)
+                searchResultRooms.add(tempResults.get(i));
         }
         return searchResultRooms;
     }
@@ -135,6 +142,11 @@ public class HotelSystem
     public Reservation lookUpReservation(String res){
         Reservation result = rd.queryDatabase(res);
         return result;
+    }
+    
+    public boolean reservationExist(String res) {
+        Reservation result = rd.queryDatabase(res);
+        return (result != null);
     }
     
     /**

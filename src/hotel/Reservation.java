@@ -43,23 +43,53 @@ public class Reservation {
             type = roomtype;
     }
     
+    public Reservation(HotelSystem hs, String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end, Room.roomType roomtype)
+    {
+            system = hs;
+            reservationNumber = res;
+            roomNumber = roomNum;
+            roomRate = rate;
+            roomTotal = total;
+            firstName = first;
+            lastName = last;
+            startDate = start;
+            endDate = end;
+            type = roomtype;
+    }
+    
     /**
      * Obtains reservation number by calling generatesRandom() for a random number
      * @return a reservation number
      */
     public String getReservationNumber()
+    {   
+        return reservationNumber;
+    }
+    
+    /*public void setReservationNumber()
     {
         long resNum = 0;
         reservationNumber = generateRandom();
         //resNum = Integer.toString(reservationNumber);
         // ensure the number is not taken
-        while((system.lookUpReservation(reservationNumber)) == null)
+        Reservation temp = system.lookUpReservation(reservationNumber);
+        
+        while((temp) != null)
         {
             // returns null if available, so not null if not free
             reservationNumber = generateRandom();
+            temp = system.lookUpReservation(reservationNumber);
+
         }
-        
-        return reservationNumber;
+    }*/
+    
+    public void setReservationNumber() {
+        long resNum = 0;
+        reservationNumber = generateRandom();
+        while(system.reservationExist(reservationNumber))
+        {
+            reservationNumber = generateRandom();
+        }
     }
     
     public int getDurationOfStay()
