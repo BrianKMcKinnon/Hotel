@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Reservation {
     
-    //variables- do any of these need to be public? what about the guest and room list?
+    // variables 
     private HotelSystem system;
     private String reservationNumber;
     private String firstName;
@@ -22,13 +22,21 @@ public class Reservation {
     private double roomTotal;
     private Room room;
     private String additionalNotes;
-    //private ArrayList<Room> rooms;
     private Calendar startDate;
     private Calendar endDate;
     private Room.roomType type;
     
     /**
-     * Class constructor 
+     * Class constructor
+     * @param res
+     * @param roomNum
+     * @param rate
+     * @param total
+     * @param first
+     * @param last
+     * @param start
+     * @param end
+     * @param roomtype 
      */
     public Reservation(String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end, Room.roomType roomtype)
     {
@@ -43,6 +51,19 @@ public class Reservation {
             type = roomtype;
     }
     
+    /**
+     * Class constructor
+     * @param hs
+     * @param res
+     * @param roomNum
+     * @param rate
+     * @param total
+     * @param first
+     * @param last
+     * @param start
+     * @param end
+     * @param roomtype 
+     */
     public Reservation(HotelSystem hs, String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end, Room.roomType roomtype)
     {
             system = hs;
@@ -58,7 +79,7 @@ public class Reservation {
     }
     
     /**
-     * Obtains reservation number by calling generatesRandom() for a random number
+     * Obtains reservation number
      * @return a reservation number
      */
     public String getReservationNumber()
@@ -83,6 +104,9 @@ public class Reservation {
         }
     }*/
     
+    /**
+     * Sets reservation number by calling generatesRandom() for a random number
+     */
     public void setReservationNumber() {
         long resNum = 0;
         reservationNumber = generateRandom();
@@ -92,16 +116,28 @@ public class Reservation {
         }
     }
     
+    /**
+     * Obtains the duration of stay, which is end - start date
+     * @return duration of stay
+     */
     public int getDurationOfStay()
     {
         return (int) ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
     }
     
+    /**
+     * Obtains first name
+     * @return firstName
+     */
     public String getFirstName()
     {
         return firstName;
     }
     
+    /**
+     * Obtains last name
+     * @return lastName
+     */
     public String getLastName()
     {
         return lastName;
@@ -186,9 +222,15 @@ public class Reservation {
         clone = (Calendar)endDate.clone();
         return clone;
     }
+    
+    /**
+     * Obtains the room type
+     * @return name of room type
+     */
     public String getRoomTypeString(){
         return type.name();
     }
+    
     /**
      * Sets additional notes taken from a customer
      * @param notes 

@@ -14,6 +14,7 @@ import hotel.GUIFrames.Welcome;
 public class Hotel {
 
     /**
+     * Main Function
      * @param args the command line arguments
      */
     public static void main(String[] args) 

@@ -11,14 +11,13 @@ public class Payment {
      */
     public Payment()
     {
-        // initialize something
+        // blank
     }
     
-    // Does payment need to do anything more?
     /**
-     * Add java documentation
+     * Returns whether or not the credit card number is valid (valid if has 16 digits)
      * @param creditCard
-     * @return 
+     * @return true/false
      */
     public static boolean checkPayment(String creditCard){
         return (creditCard.length() == 16);

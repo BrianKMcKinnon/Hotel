@@ -15,9 +15,12 @@ public class Room {
     private int roomNumber;
     private double roomCost;
     
+    /**
+     * enum as a description of bed size
+     */
     public enum roomType
     {
-        SUITE, KING, QUEEN, SINGLE          // enum as a description of bed size
+        SUITE, KING, QUEEN, SINGLE          
     }
     
     public roomType type;
@@ -73,6 +76,11 @@ public class Room {
         return roomCost;
     }
     
+    /**
+     * Obtains the name of room type
+     * @param input
+     * @return the name of room type
+     */
     public roomType translateType(int input){
         
         switch(input){
@@ -100,17 +108,29 @@ public class Room {
         return roomNumber;
     }
     
+    /**
+     * Obtains a type of a room
+     * @return type of a room
+     */
     public roomType getRoomType()
     {
         return type;
     }
     
+    /**
+     * Prints out room type to string and returns a type name
+     * @return room type name
+     */
     public String getRoomTypeString()
     {
         System.out.println("room type to string");
         return (type.name());
     }
     
+    /**
+     * Obtains room type in integer
+     * @return an integer of room type
+     */
     public int getRoomTypeInt()
     {
         if(null == type)
@@ -126,7 +146,5 @@ public class Room {
                 return 3;
         }
     }
-    
-    
     
 }

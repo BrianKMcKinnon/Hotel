@@ -45,7 +45,7 @@ public class ReservationDatabase
      * Add java documentation
      * @param start
      * @param end
-     * @return 
+     * @return an array list of rooms that are taken
      */
     public ArrayList<Room> queryDatabase(Calendar start, Calendar end){
         System.out.println("Entered queryDatabase (Calendar, Calendar)");
@@ -71,6 +71,12 @@ public class ReservationDatabase
         return takenRooms;
     }
     
+    /**
+     * Add java documentation
+     * @param startStay
+     * @param endStay
+     * @return an array list of all current reservations
+     */
     public ArrayList<Reservation> findReservations(Calendar startStay, Calendar endStay){
         currentReservations.clear();
         ResultSet rs = null;
@@ -117,6 +123,13 @@ public class ReservationDatabase
         return currentReservations;
     }
     
+    /**
+     * Add java documentation
+     * @param start
+     * @param end
+     * @param room
+     * @return an array list of all taken rooms
+     */
     public ArrayList<Room> queryDatabase(Calendar start, Calendar end, Room.roomType room){
         ResultSet rs = null;
         int temp;
@@ -162,7 +175,7 @@ public class ReservationDatabase
     /**
      * Add java documentation
      * @param reservation
-     * @return 
+     * @return a reservation object
      */
     public Reservation queryDatabase(String reservation){
         Reservation result = null;
@@ -209,7 +222,7 @@ public class ReservationDatabase
     /**
      * Add java documentation
      * @param room
-     * @return 
+     * @return an array list of all taken rooms
      */
     public ArrayList<Room> queryDatabase(Room room){
         //currentReservations.clear();
@@ -235,7 +248,7 @@ public class ReservationDatabase
     /**
      * Add java documentation
      * @param lastName
-     * @return 
+     * @return an array list of current reservations
      */
     public ArrayList<Reservation> queryDatabase(String firstName, String lastName){
         currentReservations.clear();
@@ -280,7 +293,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Makes a reservation
      * @param res 
      */
     public void makeReservation(Reservation res){
@@ -307,7 +320,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Changes/Modifies a reservation
      * @param res 
      */
     public void changeReservation(Reservation res){
@@ -332,6 +345,10 @@ public class ReservationDatabase
         }
     }
     
+    /**
+     * Deletes a reservation
+     * @param resNum 
+     */
     public void deleteReservation(String resNum){
         String query = "DELETE FROM RESERVATION WHERE RESERVATIONNUMBER = '" + resNum + "'";
         if(con != null){
