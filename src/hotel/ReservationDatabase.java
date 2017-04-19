@@ -67,6 +67,30 @@ public class ReservationDatabase
         return takenRooms;
     }
     
+    public ArrayList<Room> queryDatabase(Calendar start, Calendar end, Room room){
+        ResultSet rs = null;
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String startQuery = format1.format(start.getTime());
+        String endQuery = format1.format(end.getTime());
+        String query = "SELECT * FROM RESERVATIONS WHERE ((STARTDATE BETWEEN '" + startQuery + "' AND '" + endQuery + 
+                       "') OR (ENDDATE BETWEEN '" + startQuery + "' AND '" + endQuery + "')) AND (ROOMTYPE = '"
+                       + room.getRoomType() + "')";
+        ArrayList<Room> takenRooms = null;
+        if(con != null){
+            try{
+                Statement stmt= con.createStatement();
+                rs = stmt.executeQuery(query);
+                while(rs.next())
+                    takenRooms.add(new Room(rs.getInt(4), 0, 0, 0));
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        
+        return takenRooms;
+    }
+    
     /**
      * Add java documentation
      * @param reservation
@@ -240,7 +264,20 @@ public class ReservationDatabase
                 + ", RATE = "       + Double.toString(res.getRoomRate())
                 + ", TOTAL = "      + Double.toString(res.getRoomTotal())
                 + ", FIRSTNAME = '" + res.getRoomGuest().getFirstName()
-                + "', LASTNAME = '"  + res.getRoomGuest().getLastName() + "'";
+                + "', LASTNAME = '"  + res.getRoomGuest().getLastName() 
+                + "' WHERE RESERVATIONNUMBER = '" + res.getReservationNumber() + "'";
+        if(con != null){
+            try{
+                Statement stmt = con.createStatement();
+                stmt.executeQuery(query);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void deleteReservation(String resNum){
+        String query = "DELETE FROM RESERVATION WHERE RESERVATIONNUMBER = '" + resNum + "'";
         if(con != null){
             try{
                 Statement stmt = con.createStatement();
