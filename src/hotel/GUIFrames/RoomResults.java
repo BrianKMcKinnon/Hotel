@@ -243,8 +243,7 @@ public class RoomResults extends javax.swing.JFrame {
         endDate_label.setText(reservation.getEndDate().toString());
         rate_label.setText(Double.toString(reservation.getRoomRate()));
         roomType_label.setText(reservation.getRoom().getRoomTypeString());
-        totalCost_label.setText(Double.toString(reservation.getDurationOfStay() * reservation.getRoomRate()));
-        
+        totalCost_label.setText(Double.toString(reservation.getDurationOfStay() * reservation.getRoomRate())); 
     }
     
     public static long daysBetween(Calendar startDate, Calendar endDate) {

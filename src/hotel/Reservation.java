@@ -15,11 +15,11 @@ public class Reservation {
     //variables- do any of these need to be public? what about the guest and room list?
     private HotelSystem system;
     private String reservationNumber;
+    private String firstName;
+    private String lastName;
     private int roomNumber;
-    private int durationOfStay;
     private double roomRate;
     private double roomTotal;
-    private Guest guest;
     private Room room;
     private String additionalNotes;
     //private ArrayList<Room> rooms;
@@ -29,13 +29,14 @@ public class Reservation {
     /**
      * Class constructor 
      */
-    public Reservation(int res, int roomNum, double rate, double total, Guest g, Calendar start, Calendar end)
+    public Reservation(String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end)
     {
-            reservationNumber = Long.toString(res);
+            reservationNumber = res;
             roomNumber = roomNum;
             roomRate = rate;
             roomTotal = total;
-            guest = g;
+            firstName = first;
+            lastName = last;
             startDate = start;
             endDate = end;
     }
@@ -48,7 +49,7 @@ public class Reservation {
     {
         long resNum = 0;
         reservationNumber = generateRandom();
-        resNum = Long.parseLong(reservationNumber);
+        resNum = Integer.parseInt(reservationNumber);
         // ensure the number is not taken
         while((system.lookUpReservation(resNum)) != NULL)
         {
@@ -62,6 +63,16 @@ public class Reservation {
     public int getDurationOfStay()
     {
         return (int) ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
+    }
+    
+    public String getFirstName()
+    {
+        return firstName;
+    }
+    
+    public String geetLastName()
+    {
+        return lastName;
     }
     
     /**
@@ -111,15 +122,6 @@ public class Reservation {
     public double getRoomTotal()
     {
         return roomTotal;
-    }
-    
-    /**
-     * Obtains the guest object for a specific reservation
-     * @return a guest object
-     */
-    public Guest getRoomGuest()
-    {
-        return guest;
     }
     
     /**

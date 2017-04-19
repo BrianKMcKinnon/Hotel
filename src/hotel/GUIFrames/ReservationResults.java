@@ -182,7 +182,7 @@ public class ReservationResults extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION)
             {
-                    //ReservationDatabase.Remove(reservation);
+                    //HotelSystem.Remove(reservation);
             }
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
