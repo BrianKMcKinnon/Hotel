@@ -5,7 +5,8 @@
  */
 package hotel.GUIFrames;
 
-import Hotel.Reservation;
+import Hotel.ReservationDatabase;
+import hotel.Reservation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -63,6 +64,11 @@ public class ReservationListResults extends javax.swing.JFrame {
         jButton1.setText("Home");
 
         jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modify");
 
@@ -121,6 +127,10 @@ public class ReservationListResults extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ReservationDatabase.cancelReservation(reservations.get(jList1.getSelectedIndex()));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,15 +166,15 @@ public class ReservationListResults extends javax.swing.JFrame {
         });
     }
     
-    public void setList(ArrayList<Reservation> reservations) {
+    public void setList() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         
         String[] s_reservations = new String[reservations.size()];
         
         for (int i = 0; i < s_reservations.length; i++)
         {
-            s_reservations[i] = reservations.get(i).getRoomGuest().getLastName() +
-                                reservations.get(i).getRoomGuest().getFirstName() +
+            s_reservations[i] = /*reservations.get(i).getRoomGuest().getLastName() +
+                                reservations.get(i).getRoomGuest().getFirstName() +*/
                                 sdf.format(reservations.get(i).getStartDate()) + 
                                 sdf.format(reservations.get(i).getEndDate());
         }
@@ -183,4 +193,11 @@ public class ReservationListResults extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    
+    ArrayList<Reservation> reservations;
+    public void setReservation(ArrayList<Reservation> reservationsList)
+    {
+        reservations = reservationsList;
+    }
+
 }
