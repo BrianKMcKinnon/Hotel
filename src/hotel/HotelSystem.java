@@ -25,6 +25,11 @@ public class HotelSystem
     private ArrayList<Room> searchResultRooms;
     private ReservationDatabase rd;
     
+    private int state;
+    private static final int MANAGER = 0;
+    private static final int EMPLOYEE = 1;
+    private static final int GUEST = 2;
+    
     /**
      * Add java documentation
      * @param roomCount 
