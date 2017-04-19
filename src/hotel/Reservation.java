@@ -27,7 +27,7 @@ public class Reservation {
     /**
      * Class constructor 
      */
-    public Reservation(int res, int roomNum, double rate, double total, Guest g, Calendar start, Calendar end)
+    public Reservation(int res, int roomNum, double rate, double total, String fname, String lname, Calendar start, Calendar end)
     {
             reservationNumber = Long.toString(res);
             roomNumber = roomNum;
