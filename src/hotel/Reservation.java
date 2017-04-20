@@ -4,201 +4,60 @@
  */
 
 package hotel;
-import static java.sql.Types.NULL;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
 public class Reservation {
     
-    // variables 
-    private HotelSystem system;
-    private String reservationNumber;
+    // Variables 
+    private HotelSystem hotelSystem;
+    private final String reservationCode;
+    private final Room room;
+    private final Calendar startDate;
+    private final Calendar endDate;
     private String firstName;
     private String lastName;
-    private int roomNumber;
-    private double roomRate;
-    private double roomTotal;
-    private Room room;
-    private String additionalNotes;
-    private Calendar startDate;
-    private Calendar endDate;
-    private Room.roomType type;
     
     /**
      * Class constructor
-     * @param res
-     * @param roomNum
-     * @param rate
-     * @param total
-     * @param first
-     * @param last
-     * @param start
-     * @param end
-     * @param roomtype 
+     * @param room
+     * @param startDate
+     * @param endDate
+     * @param firstName
+     * @param lastName
      */
-    public Reservation(String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end, Room.roomType roomtype)
+    public Reservation(Room room, Calendar startDate, Calendar endDate, String firstName, String lastName)
     {
-            reservationNumber = res;
-            roomNumber = roomNum;
-            roomRate = rate;
-            roomTotal = total;
-            firstName = first;
-            lastName = last;
-            startDate = start;
-            endDate = end;
-            type = roomtype;
+        reservationCode = generateReservationCode();
+        this.room = room;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    Reservation(String string, int aInt, double aDouble, double aDouble0, String string0, String string1, Calendar startDate, Calendar endDate, Room.RoomType valueOf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    /**
-     * Class constructor
-     * @param hs
-     * @param res
-     * @param roomNum
-     * @param rate
-     * @param total
-     * @param first
-     * @param last
-     * @param start
-     * @param end
-     * @param roomtype 
-     */
-    public Reservation(HotelSystem hs, String res, int roomNum, double rate, double total, String first, String last, Calendar start, Calendar end, Room.roomType roomtype)
-    {
-            system = hs;
-            reservationNumber = res;
-            roomNumber = roomNum;
-            roomRate = rate;
-            roomTotal = total;
-            firstName = first;
-            lastName = last;
-            startDate = start;
-            endDate = end;
-            type = roomtype;
-    }
     
     /**
      * Obtains reservation number
      * @return a reservation number
      */
-    public String getReservationNumber()
+    public String getReservationCode()
     {   
-        return reservationNumber;
-    }
+        return reservationCode;
+    }    
     
-    /*public void setReservationNumber()
-    {
-        long resNum = 0;
-        reservationNumber = generateRandom();
-        //resNum = Integer.toString(reservationNumber);
-        // ensure the number is not taken
-        Reservation temp = system.lookUpReservation(reservationNumber);
-        
-        while((temp) != null)
-        {
-            // returns null if available, so not null if not free
-            reservationNumber = generateRandom();
-            temp = system.lookUpReservation(reservationNumber);
-
-        }
-    }*/
-    
-    /**
-     * Sets reservation number by calling generatesRandom() for a random number
-     */
-    public void setReservationNumber() {
-        long resNum = 0;
-        reservationNumber = generateRandom();
-        while(system.reservationExist(reservationNumber))
-        {
-            reservationNumber = generateRandom();
-        }
-    }
-    
-    /**
-     * Obtains the duration of stay, which is end - start date
-     * @return duration of stay
-     */
-    public int getDurationOfStay()
-    {
-        return (int) ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
-    }
-    
-    /**
-     * Obtains first name
-     * @return firstName
-     */
-    public String getFirstName()
-    {
-        return firstName;
-    }
-    
-    /**
-     * Obtains last name
-     * @return lastName
-     */
-    public String getLastName()
-    {
-        return lastName;
-    }
-    
-    /**
-     * Generates a random number with length = 12
-     * @return a random generated number of a reservation number
-     */
-    public String generateRandom()
-    {
-        int length = 8;
-        
-        Random random = new Random();
-        char[] digits = new char[length];
-        digits[0] = (char) (random.nextInt(9) + '1');
-        for(int i = 1; i < length; i++)
-        {
-            digits[i] = (char)(random.nextInt(1) + '0');
-        }
-        
-        // makeReservation();
-        
-        return String.valueOf(digits);
-    }
-    
-    /**
+     /**
      * Obtains a room object for the specific reservation number
      * @return a room object
      */
     public Room getRoom()
     {
         return room;
-    }
-    
-    /**
-     * Obtains a rate for the specific room of the reservation number
-     * @return room rate for pricing
-     */
-    public double getRoomRate()
-    {
-        return roomRate;
-        // associate with room somehow? other than getting info from initialization? or nah?
-    }
-    
-    /**
-     * Obtains the total number of rooms in a specific reservation
-     * @return total room
-     */
-    public double getRoomTotal()
-    {
-        return roomTotal;
-    }
-    
-    /**
-     * Obtains a room number of the specific reservation number
-     * @return a room number
-     */
-    public int getRoomNumber()
-    {
-        return roomNumber;
     }
     
     /**
@@ -224,29 +83,75 @@ public class Reservation {
     }
     
     /**
-     * Obtains the room type
-     * @return name of room type
+     * Obtains the duration of stay, which is end - start date
+     * @return duration of stay
      */
-    public String getRoomTypeString(){
-        return type.name();
+    public int getDurationOfStay()
+    {
+        return (int) ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
+    }
+    
+    
+    /**
+     * Obtains first name
+     * @return firstName
+     */
+    public String getFirstName()
+    {
+        return firstName;
     }
     
     /**
-     * Sets additional notes taken from a customer
-     * @param notes 
+     * Obtains last name
+     * @return lastName
      */
-    public void setAdditionalNotes(String notes) 
+    public String getLastName()
     {
-	    additionalNotes = notes;
+        return lastName;
     }
-	
-    /**
-     * Obtains any additional notes from a customer
-     * @return any additional notes
-     */
-    public String getAdditionalNotes() 
+    
+    public void setName(String fName, String lName)
     {
-        return additionalNotes;
+        firstName = fName;
+        lastName = lName;
+    }
+    
+    /**
+     * Obtains the total cost of the reservation
+     * @return total room
+     */
+    public double getReservationTotal()
+    {
+        return getDurationOfStay() * room.getCost();
+    }
+    
+    
+    /**
+     * Generates a random numeric string of a desired length
+     * @return a random generated number of a reservation number
+     */
+    private String generateRandom()
+    {
+        int length = 8;
+        
+        Random random = new Random();
+        char[] digits = new char[length];
+        digits[0] = (char) (random.nextInt(9) + '1');
+        for(int i = 1; i < length; i++)
+            digits[i] = (char)(random.nextInt(1) + '0');
+
+        return String.valueOf(digits);
+    }
+    
+    /**
+     * Sets reservation code by calling generatesRandom() for a random number
+     */
+    private String generateReservationCode() {
+        String resCode = generateRandom();
+        
+        while(hotelSystem.reservationExist(resCode))
+            resCode = generateRandom();
+        return resCode;
     }
 
 }

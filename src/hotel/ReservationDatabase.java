@@ -61,7 +61,7 @@ public class ReservationDatabase
                 Statement stmt= con.createStatement();
                 rs = stmt.executeQuery(query);
                 while(rs.next())
-                    takenRooms.add(new Room(rs.getInt(4), 0, Room.roomType.KING));
+                    takenRooms.add(new Room(rs.getInt(4), 0, Room.RoomType.KING));
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -112,7 +112,7 @@ public class ReservationDatabase
                                                             rs.getString(8),
                                                             startDate,
                                                             endDate,
-                                                            Room.roomType.valueOf(rs.getString(9))));
+                                                            Room.RoomType.valueOf(rs.getString(9))));
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -130,7 +130,7 @@ public class ReservationDatabase
      * @param room
      * @return an array list of all taken rooms
      */
-    public ArrayList<Room> queryDatabase(Calendar start, Calendar end, Room.roomType room){
+    public ArrayList<Room> queryDatabase(Calendar start, Calendar end, Room.RoomType room){
         ResultSet rs = null;
         int temp;
         if(null == room){
@@ -162,7 +162,7 @@ public class ReservationDatabase
                 Statement stmt= con.createStatement();
                 rs = stmt.executeQuery(query);
                 while(rs.next())
-                    takenRooms.add(new Room(rs.getInt(4), 0, Room.roomType.KING));
+                    takenRooms.add(new Room(rs.getInt(4), 0, Room.RoomType.KING));
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -208,7 +208,7 @@ public class ReservationDatabase
                                                             rs.getString(8),
                                                             startDate,
                                                             endDate,
-                                                            Room.roomType.valueOf(rs.getString(9))));
+                                                            Room.RoomType.valueOf(rs.getString(9))));
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -235,7 +235,7 @@ public class ReservationDatabase
                 Statement stmt = con.createStatement();
                 rs = stmt.executeQuery(query);
                 while(rs.next()){
-                    takenRooms.add(new Room(rs.getInt(4), 0, Room.roomType.KING));
+                    takenRooms.add(new Room(rs.getInt(4), 0, Room.RoomType.KING));
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -282,7 +282,7 @@ public class ReservationDatabase
                                                             rs.getString(8),
                                                             startDate,
                                                             endDate,
-                                                            Room.roomType.valueOf(rs.getString(9))));
+                                                            Room.RoomType.valueOf(rs.getString(9))));
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -301,12 +301,12 @@ public class ReservationDatabase
         String startDate = format1.format(res.getStartDate().getTime());
         String endDate = format1.format(res.getEndDate().getTime());
         String query = "INSERT INTO RESERVATIONS VALUES ( " 
-                + res.getReservationNumber() 
+                + res.getReservationCode() 
                 + ",'"  + startDate
                 + "','" + endDate
-                + "',"  + Integer.toString(res.getRoomNumber())
-                + ","   + Double.toString(res.getRoomRate())
-                + ","   + Double.toString(res.getRoomTotal())
+                + "',"  + Integer.toString(res.getRoom().getRoomNumber())
+                + ","   + Double.toString(res.getRoom().getCost())
+                + ","   + Double.toString(res.getReservationTotal())
                 + ",'"  + res.getFirstName()
                 + "','" + res.getLastName() + "')";
         if(con != null){
@@ -329,12 +329,12 @@ public class ReservationDatabase
         String endDate = format1.format(res.getEndDate().getTime());
         String query = "UPDATE RESERVATION SET STARTDATE = '" + startDate
                 + "', ENDDATE = '"  + endDate
-                + "', ROOMNUMBER = "+ Integer.toString(res.getRoomNumber())
-                + ", RATE = "       + Double.toString(res.getRoomRate())
-                + ", TOTAL = "      + Double.toString(res.getRoomTotal())
+                + "', ROOMNUMBER = "+ Integer.toString(res.getRoom().getRoomNumber())
+                + ", RATE = "       + Double.toString(res.getRoom().getCost())
+                + ", TOTAL = "      + Double.toString(res.getReservationTotal())
                 + ", FIRSTNAME = '" + res.getFirstName()
                 + "', LASTNAME = '"  + res.getLastName() 
-                + "' WHERE RESERVATIONNUMBER = '" + res.getReservationNumber() + "'";
+                + "' WHERE RESERVATIONNUMBER = '" + res.getReservationCode() + "'";
         if(con != null){
             try{
                 Statement stmt = con.createStatement();

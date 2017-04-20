@@ -6,7 +6,7 @@
 package hotel.GUIFrames.Guest;
 import hotel.Reservation;
 import hotel.GUIFrames.CreateReservation;
-import hotel.GUIFrames.ExistingReservationResults;
+import hotel.GUIFrames.SingleReservationResults;
 import hotel.GUIFrames.Welcome;
 import hotel.HotelSystem;
 import hotel.ReservationDatabase;
@@ -17,17 +17,11 @@ import javax.swing.JOptionPane;
  * @author Chandler
  */
 public class GuestEnterReservation extends javax.swing.JFrame {
-    HotelSystem hs;
     /**
      * Creates new form GuestCancelReservation
      */
     public GuestEnterReservation() {
         initComponents();
-    }
-
-    GuestEnterReservation(HotelSystem hotelsystem) {
-        initComponents();
-        hs = hotelsystem;
     }
 
     /**
@@ -129,9 +123,9 @@ public class GuestEnterReservation extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(viewReservaion_Button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(modifyReservation_Button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -144,84 +138,56 @@ public class GuestEnterReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
-        Reservation temp = hs.lookUpReservation(jTextField1.getText());
-        if (temp != null)
+        Reservation reservation = HotelSystem.getInstance(0).lookUpReservation(jTextField1.getText());
+        if (reservation != null)
         {
-            GuestModifyReservation frame = new GuestModifyReservation(hs,temp);
+            GuestModifyReservation frame = new GuestModifyReservation(reservation);
             frame.setLocationRelativeTo(this);
             this.setVisible(false);
             frame.setVisible(true);
         }
         
-        //else 
-        //{
-        //    JOptionPane.showMessageDialog(null, "The provided reservation code does not exist.");            
-        //}
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "The provided reservation code does not exist.");            
+        }
     }//GEN-LAST:event_modifyReservation_ButtonActionPerformed
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
-        Welcome frame = new Welcome(hs);
+        Welcome frame = new Welcome();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
 
     private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
-        if (hs.lookUpReservation(jTextField1.getText()) != null)
+        Reservation reservation = HotelSystem.getInstance(0).lookUpReservation(jTextField1.getText());
+        if (reservation != null)
         {
             int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION)
             {
-                    //HotelSystem.Remove(reservation);
+                    HotelSystem.getInstance(0).removeReservation(reservation);
                     home_ButtonActionPerformed(null);
             }
+        }
+        
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "The provided reservation code does not exist.");            
         }
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     private void viewReservaion_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReservaion_ButtonActionPerformed
-        ExistingReservationResults frame = new ExistingReservationResults();
-        frame.setLocationRelativeTo(this);
-        this.setVisible(false);
-        frame.setVisible(true);
-    }//GEN-LAST:event_viewReservaion_ButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuestEnterReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuestEnterReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuestEnterReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuestEnterReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        Reservation reservation = HotelSystem.getInstance(0).lookUpReservation(jTextField1.getText());
+        if (reservation != null)
+        {
+            SingleReservationResults frame = new SingleReservationResults(reservation);
+            frame.setLocationRelativeTo(this);
+            this.setVisible(false);
+            frame.setVisible(true);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GuestEnterReservation().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_viewReservaion_ButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelReservation_Button;

@@ -3,24 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.GUIFrames;
+package hotel.GUIFrames.Employee;
 
+import hotel.HotelSystem;
 import hotel.ReservationDatabase;
 import hotel.Reservation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
  * @author Chandler
  */
 public class ReservationListResults extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form ReservationListResults
      */
-    public ReservationListResults() {
+    ReservationListResults(String resCode) {
         initComponents();
+    }
+
+    ReservationListResults(String firstName, String lastName) {
+        initComponents();
+        setList(HotelSystem.getInstance(0).findOccupiedRoom(firstName, lastName));
+    }
+
+    ReservationListResults(Calendar startDate, Calendar endDate) {
+        initComponents();
+        setList(HotelSystem.getInstance(0).findOccupiedRoom(startDate, endDate));
     }
 
     /**
@@ -33,7 +45,7 @@ public class ReservationListResults extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        reservation_List = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,12 +56,12 @@ public class ReservationListResults extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        reservation_List.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(reservation_List);
 
         jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
         jLabel1.setText("el Hotel");
@@ -130,56 +142,22 @@ public class ReservationListResults extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //HotelSystem.cancelReservation(reservations.get(jList1.getSelectedIndex()));
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReservationListResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReservationListResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReservationListResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReservationListResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReservationListResults().setVisible(true);
-            }
-        });
-    }
-    
-    public void setList() {
+   
+    public void setList(ArrayList<Reservation> reservations) {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         
         String[] s_reservations = new String[reservations.size()];
         
         for (int i = 0; i < s_reservations.length; i++)
         {
-            s_reservations[i] = /*reservations.get(i).getRoomGuest().getLastName() +
-                                reservations.get(i).getRoomGuest().getFirstName() +*/
-                                sdf.format(reservations.get(i).getStartDate()) + 
+            s_reservations[i] = Integer.toString(reservations.get(i).getRoom().getRoomNumber()) + "/t" +
+                                reservations.get(i).getFirstName() + " " +
+                                reservations.get(i).getLastName() + "/t" +
+                                sdf.format(reservations.get(i).getStartDate()) + " " +
                                 sdf.format(reservations.get(i).getEndDate());
         }
         
-        jList1.setListData(s_reservations);
+        reservation_List.setListData(s_reservations);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -190,14 +168,8 @@ public class ReservationListResults extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> reservation_List;
     // End of variables declaration//GEN-END:variables
     
-    ArrayList<Reservation> reservations;
-    public void setReservation(ArrayList<Reservation> reservationsList)
-    {
-        reservations = reservationsList;
-    }
-
 }

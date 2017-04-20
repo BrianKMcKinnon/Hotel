@@ -5,42 +5,34 @@
  */
 package hotel.GUIFrames;
 
-import hotel.ReservationDatabase;
 import hotel.GUIFrames.Guest.PaymentScreen;
 import hotel.HotelSystem;
 import hotel.Reservation;
-import hotel.Room;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JList;
 
 /**
  *
  * @author Chandler
  */
-public class RoomResults extends javax.swing.JFrame {
-    HotelSystem hs = null;
-    Reservation res;
+public class FoundRoomResults extends javax.swing.JFrame {
+    Reservation reservation;
+    
     /**
      * Creates new form RoomResults
 
      */
-
-    RoomResults(HotelSystem hotelsystem, Reservation tempRes) {
+    FoundRoomResults(Reservation tempRes) {
         initComponents();
-        System.out.println("entered RoomResults");
-        hs = hotelsystem;
-        res = tempRes;
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-        String startDate = format1.format(tempRes.getStartDate().getTime());
-        String endDate = format1.format(tempRes.getEndDate().getTime());
-        startDate_label.setText(startDate);
-        System.out.println("made it through startDate");
-        endDate_label.setText(endDate);
-        rate_label.setText(Double.toString(tempRes.getRoomRate()));
-        roomType_label.setText(tempRes.getRoomTypeString());
-        totalCost_label.setText(Double.toString(tempRes.getDurationOfStay() * tempRes.getRoomRate()));
+        reservation = tempRes;
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        startDate_label.setText(dateFormat.format(reservation.getStartDate().getTime()));
+        endDate_label.setText(dateFormat.format(reservation.getEndDate().getTime()));
+        rate_label.setText(Double.toString(reservation.getRoom().getCost()));
+        roomType_label.setText(reservation.getRoom().getRoomTypeString());
+        totalCost_label.setText(Double.toString(reservation.getReservationTotal()));
     }
 
     /**
@@ -188,14 +180,14 @@ public class RoomResults extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
-        Welcome frame = new Welcome(hs);
+        Welcome frame = new Welcome();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PaymentScreen frame = new PaymentScreen(hs, res);
+        PaymentScreen frame = new PaymentScreen(reservation);
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
@@ -218,20 +210,20 @@ public class RoomResults extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(FoundRoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(FoundRoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(FoundRoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(FoundRoomResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new RoomResults(hs,res).setVisible(true);
+//                new FoundRoomResults(hs,reservation).setVisible(true);
 //            }
 //        });
 //    }

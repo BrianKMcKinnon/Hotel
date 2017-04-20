@@ -14,21 +14,12 @@ import hotel.HotelSystem;
  * @author Chandler
  */
 public class EmployeeHome extends javax.swing.JFrame {
-    HotelSystem hs;
+
     /**
      * Creates new form EmployeeHome
      */
     public EmployeeHome() {
         initComponents();
-    }
-
-    public EmployeeHome(HotelSystem hotelsystem) {
-        initComponents();
-        hs = hotelsystem;
-    }
-
-    public EmployeeHome(HotelSystem hs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -43,9 +34,9 @@ public class EmployeeHome extends javax.swing.JFrame {
         logout_Button = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        makeReservation_Button = new javax.swing.JButton();
-        cancelReservation_Button = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        createReservation_Button = new javax.swing.JButton();
+        existingReservation_Button = new javax.swing.JButton();
+        manage_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,24 +53,24 @@ public class EmployeeHome extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Welcome Employee");
 
-        makeReservation_Button.setText("New Reservation");
-        makeReservation_Button.addActionListener(new java.awt.event.ActionListener() {
+        createReservation_Button.setText("New Reservation");
+        createReservation_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeReservation_ButtonActionPerformed(evt);
+                createReservation_ButtonActionPerformed(evt);
             }
         });
 
-        cancelReservation_Button.setText("Existing Reservation");
-        cancelReservation_Button.addActionListener(new java.awt.event.ActionListener() {
+        existingReservation_Button.setText("Existing Reservation");
+        existingReservation_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelReservation_ButtonActionPerformed(evt);
+                existingReservation_ButtonActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Manage");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        manage_Button.setText("Manage");
+        manage_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                manage_ButtonActionPerformed(evt);
             }
         });
 
@@ -87,22 +78,23 @@ public class EmployeeHome extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(createReservation_Button)
+                    .addComponent(existingReservation_Button)
+                    .addComponent(logout_Button)
+                    .addComponent(manage_Button))
+                .addGap(133, 133, 133))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(20, 20, 20)
                         .addComponent(jLabel2))
-                    .addComponent(jLabel1))
-                .addContainerGap(227, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(makeReservation_Button)
-                    .addComponent(cancelReservation_Button)
-                    .addComponent(logout_Button)
-                    .addComponent(jButton1))
-                .addGap(133, 133, 133))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,11 +104,11 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(makeReservation_Button)
+                .addComponent(createReservation_Button)
                 .addGap(18, 18, 18)
-                .addComponent(cancelReservation_Button)
+                .addComponent(existingReservation_Button)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(manage_Button)
                 .addGap(18, 18, 18)
                 .addComponent(logout_Button)
                 .addGap(23, 23, 23))
@@ -131,21 +123,21 @@ public class EmployeeHome extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_logout_ButtonActionPerformed
 
-    private void makeReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReservation_ButtonActionPerformed
+    private void createReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createReservation_ButtonActionPerformed
         CreateReservation frame = new CreateReservation();
         this.setVisible(false);
         frame.setVisible(true);
-    }//GEN-LAST:event_makeReservation_ButtonActionPerformed
+    }//GEN-LAST:event_createReservation_ButtonActionPerformed
 
-    private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
+    private void existingReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existingReservation_ButtonActionPerformed
         EmployeeSearchReservation frame = new EmployeeSearchReservation();
         this.setVisible(false);
         frame.setVisible(true);
-    }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
+    }//GEN-LAST:event_existingReservation_ButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void manage_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_ButtonActionPerformed
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_manage_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,11 +175,11 @@ public class EmployeeHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelReservation_Button;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton createReservation_Button;
+    private javax.swing.JButton existingReservation_Button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logout_Button;
-    private javax.swing.JButton makeReservation_Button;
+    private javax.swing.JButton manage_Button;
     // End of variables declaration//GEN-END:variables
 }

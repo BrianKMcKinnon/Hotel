@@ -17,14 +17,9 @@ public class ReservationCode extends javax.swing.JFrame {
     /**
      * Creates new form ReservationCode
      */
-    public ReservationCode() {
+    public ReservationCode(Reservation res) {
         initComponents();
-        
-    }
-
-    ReservationCode(Reservation res) {
-        initComponents();
-        jTextField1.setText(res.getReservationNumber());
+        jTextField1.setText(res.getReservationCode());
     }
 
     /**
@@ -53,6 +48,7 @@ public class ReservationCode extends javax.swing.JFrame {
         jLabel3.setText("Reservation Code");
 
         jTextField1.setEditable(false);
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("uh39u3oe3r");
 
         home_Button.setText("Home");
@@ -113,41 +109,6 @@ public class ReservationCode extends javax.swing.JFrame {
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_home_ButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReservationCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReservationCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReservationCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReservationCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReservationCode().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton home_Button;

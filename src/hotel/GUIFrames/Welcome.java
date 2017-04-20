@@ -15,8 +15,6 @@ import hotel.HotelSystem;
  */
 public class Welcome extends javax.swing.JFrame {
     
-    HotelSystem hs;
-
     /**
      * Creates new form NewJFrame
      */
@@ -26,7 +24,6 @@ public class Welcome extends javax.swing.JFrame {
 
     public Welcome(HotelSystem hotelsystem) {
         initComponents();
-        hs = hotelsystem;
     }
 
     /**
@@ -39,8 +36,8 @@ public class Welcome extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        guestHome_Button = new javax.swing.JButton();
+        employeeHome_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,19 +45,19 @@ public class Welcome extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Welcome to el Hotel!");
 
-        jButton1.setFont(new java.awt.Font("French Script MT", 0, 24)); // NOI18N
-        jButton1.setText("Guest");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guestHome_Button.setFont(new java.awt.Font("French Script MT", 0, 24)); // NOI18N
+        guestHome_Button.setText("Guest");
+        guestHome_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guestHome_ButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("French Script MT", 0, 24)); // NOI18N
-        jButton2.setText("Employee");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        employeeHome_Button.setFont(new java.awt.Font("French Script MT", 0, 24)); // NOI18N
+        employeeHome_Button.setText("Employee");
+        employeeHome_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                employeeHome_ButtonActionPerformed(evt);
             }
         });
 
@@ -72,8 +69,8 @@ public class Welcome extends javax.swing.JFrame {
                 .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(guestHome_Button)
+                    .addComponent(employeeHome_Button))
                 .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
@@ -82,28 +79,28 @@ public class Welcome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(73, 73, 73)
-                .addComponent(jButton1)
+                .addComponent(guestHome_Button)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(employeeHome_Button)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GuestHome frame = new GuestHome(hs); // Creates new GuesHome JFrame
+    private void guestHome_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestHome_ButtonActionPerformed
+        GuestHome frame = new GuestHome(); // Creates new GuesHome JFrame
         frame.setLocationRelativeTo(this);  // Sets location
         this.setVisible(false);             // Sets invisibility
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_guestHome_ButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        EmployeeHome frame = new EmployeeHome(hs);
+    private void employeeHome_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeHome_ButtonActionPerformed
+        EmployeeHome frame = new EmployeeHome();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_employeeHome_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,15 +135,14 @@ public class Welcome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HotelSystem hs = new HotelSystem(200);
-                new Welcome(hs).setVisible(true);
+                new Welcome().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton employeeHome_Button;
+    private javax.swing.JButton guestHome_Button;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

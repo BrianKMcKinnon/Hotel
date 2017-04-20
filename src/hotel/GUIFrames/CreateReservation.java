@@ -18,30 +18,21 @@ import javax.swing.JOptionPane;
  * @author Chandler
  */
 public class CreateReservation extends javax.swing.JFrame {
-    HotelSystem hs;
     /**
      * Creates new form GuestReservationScreen1
      */
-    
-    public CreateReservation(HotelSystem hotelsystem) {
+    public CreateReservation() {
         initComponents();
-        initCalendars();        
+        initCalendars();      
         String[] roomTypes = { "Suite", "King", "Queen", "Single", "No Preference" };
         roomType_Chooser.setListData(roomTypes);
         roomType_Chooser.setSelectedIndex(0);
-        hs=hotelsystem;
     }
-
-    public CreateReservation(HotelSystem hs, Reservation temp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
-    private void initCalendars()
-    {
+    private void initCalendars() {
         Calendar tempCal = Calendar.getInstance();
-        
-        startDate_Chooser.setCalendar(tempCal);
+
+        startDate_Chooser.setCalendar(tempCal); // Set to today's date
         tempCal.add(Calendar.DATE, 1); // Set to tomorrow's date
         endDate_Chooser.setCalendar(tempCal);
     }
@@ -184,7 +175,7 @@ public class CreateReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
-        Welcome frame = new Welcome(hs);
+        Welcome frame = new Welcome();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
@@ -193,42 +184,26 @@ public class CreateReservation extends javax.swing.JFrame {
     
     private void findRooms_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findRooms_ButtonActionPerformed
         if (startDate_Chooser.getCalendar().compareTo(endDate_Chooser.getCalendar()) > 0)   // Check if startDate is before endDate
-        {
             JOptionPane.showMessageDialog(null, "Start Date must be before End Date");
-        }
         else 
-        {  
-            ArrayList<Room> rooms = new ArrayList<Room>();
-            rooms = null;
-            Room tempRoom = hs.allRooms().get(0);
-            Calendar tempStart = Calendar.getInstance();
-            tempStart = startDate_Chooser.getCalendar();
-            System.out.println(Integer.toString(roomType_Chooser.getSelectedIndex()));
-            rooms = hs.findAvailableRoom(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), tempRoom.translateType(roomType_Chooser.getSelectedIndex()));
-            System.out.print(tempRoom.translateType(roomType_Chooser.getAnchorSelectionIndex()));
-            Calendar tempEnd = Calendar.getInstance();
-            System.out.println(Integer.toString(rooms.size()));
-            tempEnd = endDate_Chooser.getCalendar();
-            if (rooms != null)
+        {
+            HotelSystem hotelSystem = HotelSystem.getInstance(0);
+            ArrayList<Room> foundRooms = hotelSystem.findAvailableRoom(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), Room.translateType(roomType_Chooser.getSelectedIndex()));
+            if (foundRooms != null)
             {
-                Reservation tempRes = new Reservation(hs, "0000000000", rooms.get(0).getRoomNumber(), rooms.get(0).getCost(), 0.00, "First", "Last", tempStart, tempEnd, rooms.get(0).getRoomType());
-                if(tempRes.getStartDate() != null)
+                Reservation tempRes = new Reservation(foundRooms.get(0), startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), "First", "Last");
+                if (tempRes.getStartDate() != null)
                 {
-                    
-                    System.out.println("about to enter RoomResults");
-                    RoomResults frame = new RoomResults(hs, tempRes);
-                    //frame.setReservation(tempRes);
+                    FoundRoomResults frame = new FoundRoomResults(tempRes);
                     frame.setLocationRelativeTo(this);
                     this.setVisible(false);
                     frame.setVisible(true);
                 }
-                else
-                {
-                    System.out.println("getStartDate = null");
-                }
             }
-            else{
-                System.out.println("No available rooms");
+            
+            else
+            {
+                JOptionPane.showMessageDialog(null, "There are no available rooms with the given parameters.");
             }
         }
     }//GEN-LAST:event_findRooms_ButtonActionPerformed

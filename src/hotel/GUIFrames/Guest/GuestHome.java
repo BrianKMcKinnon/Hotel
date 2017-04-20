@@ -15,7 +15,6 @@ import hotel.HotelSystem;
  * @author Chandler
  */
 public class GuestHome extends javax.swing.JFrame {
-    HotelSystem hs;
     /**
      * Creates new form GuestHomeScreen1
      */
@@ -25,7 +24,6 @@ public class GuestHome extends javax.swing.JFrame {
 
     public GuestHome(HotelSystem hotelsystem) {
         initComponents();
-        hs = hotelsystem;
     }
 
 
@@ -114,21 +112,21 @@ public class GuestHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void makeReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReservation_ButtonActionPerformed
-        CreateReservation frame = new CreateReservation(hs);
+        CreateReservation frame = new CreateReservation();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_makeReservation_ButtonActionPerformed
 
     private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
-        GuestEnterReservation frame = new GuestEnterReservation(hs);
+        GuestEnterReservation frame = new GuestEnterReservation();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     private void logout_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_ButtonActionPerformed
-        Welcome frame = new Welcome(hs);
+        Welcome frame = new Welcome();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);

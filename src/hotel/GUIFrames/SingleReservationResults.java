@@ -5,7 +5,9 @@
  */
 package hotel.GUIFrames;
 
+import hotel.GUIFrames.Guest.GuestModifyReservation;
 import hotel.HotelSystem;
+import hotel.Reservation;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -13,18 +15,27 @@ import javax.swing.JOptionPane;
  *
  * @author Chandler
  */
-public class ExistingReservationResults extends javax.swing.JFrame {
+public class SingleReservationResults extends javax.swing.JFrame {
 
-    HotelSystem hs;
+    Reservation reservation;
+    
     /**
      * Creates new form ReservationResults
      */
-    public ExistingReservationResults() {
+    public SingleReservationResults(Reservation res) {
         initComponents();
+        reservation = res;
+        setLabels();
     }
     
+    private void setLabels() {
+        firstName_label.setText(reservation.getFirstName());
+        lastName_label.setText(reservation.getLastName());
+        reservationCode_label.setText(reservation.getReservationCode());
+        roomType_label.setText(reservation.getRoom().getRoomTypeString());
+        stayDuration_label.setText(reservation.getStartDate().toString() + " until " + reservation.getEndDate().toString());
+    }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,13 +48,13 @@ public class ExistingReservationResults extends javax.swing.JFrame {
         home_Button1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        firstName = new javax.swing.JLabel();
-        lastName = new javax.swing.JLabel();
-        stayDuration = new javax.swing.JLabel();
-        roomNumber = new javax.swing.JLabel();
-        roomType = new javax.swing.JLabel();
+        firstName_label = new javax.swing.JLabel();
+        lastName_label = new javax.swing.JLabel();
+        stayDuration_label = new javax.swing.JLabel();
+        roomNumber_label = new javax.swing.JLabel();
+        roomType_label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        reservationCode = new javax.swing.JLabel();
+        reservationCode_label = new javax.swing.JLabel();
         home_Button = new javax.swing.JButton();
         cancelReservation_Button = new javax.swing.JButton();
         modifyReservation_Button = new javax.swing.JButton();
@@ -63,19 +74,19 @@ public class ExistingReservationResults extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Welcome Guest");
 
-        firstName.setText("Chandler");
+        firstName_label.setText("Chandler");
 
-        lastName.setText("Davidson");
+        lastName_label.setText("Davidson");
 
-        stayDuration.setText("October 15, 2017 until October 19, 2017");
+        stayDuration_label.setText("October 15, 2017 until October 19, 2017");
 
-        roomNumber.setText("Room 217");
+        roomNumber_label.setText("Room 217");
 
-        roomType.setText("King Size");
+        roomType_label.setText("King Size");
 
         jLabel8.setText("Reservation Code");
 
-        reservationCode.setText("aeuh839t39");
+        reservationCode_label.setText("aeuh839t39");
 
         home_Button.setText("Home");
         home_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -109,8 +120,8 @@ public class ExistingReservationResults extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(firstName)
-                                    .addComponent(lastName)))
+                                    .addComponent(firstName_label)
+                                    .addComponent(lastName_label)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,15 +133,15 @@ public class ExistingReservationResults extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(reservationCode))
+                                .addComponent(reservationCode_label))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(roomNumber)
+                                        .addComponent(roomNumber_label)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(roomType))
-                                    .addComponent(stayDuration))))
+                                        .addComponent(roomType_label))
+                                    .addComponent(stayDuration_label))))
                         .addGap(0, 104, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -149,19 +160,19 @@ public class ExistingReservationResults extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(firstName)
+                .addComponent(firstName_label)
                 .addGap(18, 18, 18)
-                .addComponent(lastName)
+                .addComponent(lastName_label)
                 .addGap(18, 18, 18)
-                .addComponent(stayDuration)
+                .addComponent(stayDuration_label)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roomNumber)
-                    .addComponent(roomType))
+                    .addComponent(roomNumber_label)
+                    .addComponent(roomType_label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(reservationCode))
+                    .addComponent(reservationCode_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(home_Button)
@@ -185,69 +196,35 @@ public class ExistingReservationResults extends javax.swing.JFrame {
     }//GEN-LAST:event_home_Button1ActionPerformed
 
     private void cancelReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservation_ButtonActionPerformed
-        int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (response == JOptionPane.YES_OPTION)
-            {
-                    //ReservationDatabase.Remove(reservation);
-            }
+    int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    if (response == JOptionPane.YES_OPTION)
+    {
+        HotelSystem.getInstance(0).removeReservation(reservation);
+        JOptionPane.showMessageDialog(null, "Your booking has been removed");
+        home_ButtonActionPerformed(null);
+    }
     }//GEN-LAST:event_cancelReservation_ButtonActionPerformed
 
     private void modifyReservation_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyReservation_ButtonActionPerformed
-        CreateReservation frame = new CreateReservation(hs);
-        frame.setLocationRelativeTo(this);
-        this.setVisible(false);
-        frame.setVisible(true);        // TODO add your handling code here:
+        GuestModifyReservation frame = new GuestModifyReservation(reservation);
+            frame.setLocationRelativeTo(this);
+            this.setVisible(false);
+            frame.setVisible(true);
     }//GEN-LAST:event_modifyReservation_ButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExistingReservationResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ExistingReservationResults().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelReservation_Button;
-    private javax.swing.JLabel firstName;
+    private javax.swing.JLabel firstName_label;
     private javax.swing.JButton home_Button;
     private javax.swing.JButton home_Button1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lastName;
+    private javax.swing.JLabel lastName_label;
     private javax.swing.JButton modifyReservation_Button;
-    private javax.swing.JLabel reservationCode;
-    private javax.swing.JLabel roomNumber;
-    private javax.swing.JLabel roomType;
-    private javax.swing.JLabel stayDuration;
+    private javax.swing.JLabel reservationCode_label;
+    private javax.swing.JLabel roomNumber_label;
+    private javax.swing.JLabel roomType_label;
+    private javax.swing.JLabel stayDuration_label;
     // End of variables declaration//GEN-END:variables
 }

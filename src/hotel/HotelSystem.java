@@ -15,51 +15,66 @@ import java.util.Calendar;
 
 public class HotelSystem 
 {
-    // variables
+    // Variables
     public String hotelName;
     public int numRooms;
-    private ArrayList<Room> allRooms;
+    private final ArrayList<Room> allRooms;
     private ArrayList<Room> searchResultRooms;
     private ArrayList<Reservation> searchResultReservations;
-    private ReservationDatabase rd;
+    private final ReservationDatabase reservationDatabase;
+    private static HotelSystem instance = null;     // Actually implement Singleton design pattern
+    
     
     /**
-     * Add java documentation
+     * Builds the appropriate ArrayLists
      * @param roomCount 
      */
-    public HotelSystem(int roomCount){
-        allRooms = new ArrayList<Room>();
-        searchResultRooms = new ArrayList<Room>();
-        searchResultReservations = new ArrayList<Reservation>();
+    protected HotelSystem(int roomCount){
+        allRooms = new ArrayList<>();
+        searchResultRooms = new ArrayList<>();
+        searchResultReservations = new ArrayList<>();
         for(int i=0;i<roomCount;i++){
             if(i%4==0){
-                allRooms.add(new Room(i+1, 300.00, Room.roomType.SUITE));
+                allRooms.add(new Room(i+1, 300.00, Room.RoomType.SUITE));
             }
             else if(i%4==1){
-                allRooms.add(new Room(i+1, 200.00, Room.roomType.KING));
+                allRooms.add(new Room(i+1, 200.00, Room.RoomType.KING));
             }
             else if(i%4==2){
-                allRooms.add(new Room(i+1, 150.00, Room.roomType.QUEEN)); 
+                allRooms.add(new Room(i+1, 150.00, Room.RoomType.QUEEN)); 
             }
             else{
-                allRooms.add(new Room(i+1, 100.00, Room.roomType.SINGLE));
+                allRooms.add(new Room(i+1, 100.00, Room.RoomType.SINGLE));
             }
         }
-        rd = new ReservationDatabase();
+        reservationDatabase = new ReservationDatabase();
     }
     
     /**
-     * Add java documentation
+     * Necessary to implement Singleton design pattern
+     * @param roomCount
+     * @return instance of HotelSysetm
+     */
+    
+    public static HotelSystem getInstance(int roomCount) {
+        if (instance == null)
+            instance = new HotelSystem(roomCount);
+        
+        return instance;
+    }
+    
+    /**
+     * Returns a list of the available rooms within the given date range
      * @param startDate
      * @param endDate
-     * @return 
+     * @return ArrayList of Room
      */
     public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate){
         System.out.println("Entered findAvailableRoom (Calendar, Calendar)");
         searchResultRooms.clear();
         ArrayList<Room> temp = null;
         boolean occupied=false;
-        temp = rd.queryDatabase(startDate, endDate);     //occupied rooms are returned
+        temp = reservationDatabase.queryDatabase(startDate, endDate);     //occupied rooms are returned
         if(temp != null){
             for(int i=1;i<=numRooms-temp.size();i++){
                 occupied=false;
@@ -79,13 +94,19 @@ public class HotelSystem
         return searchResultRooms;
     }
     
-    public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate, Room.roomType roomtype){
+    /**
+     * Returns a list of the available rooms within the given date range and of the room type
+     * @param startDate
+     * @param endDate
+     * @return ArrayList of Room
+     */
+    public ArrayList<Room> findAvailableRoom(Calendar startDate, Calendar endDate, Room.RoomType roomtype){
         searchResultRooms.clear();
         ArrayList<Room> tempResults = new ArrayList<Room>();
         ArrayList<Room> temp = null;
         boolean occupied=false;
         System.out.println(roomtype.toString());
-        temp = rd.queryDatabase(startDate, endDate, roomtype);     //occupied rooms are returned
+        temp = reservationDatabase.queryDatabase(startDate, endDate, roomtype);     //occupied rooms are returned
         if(temp != null){
             for(int i=0;i<numRooms-temp.size();i++){
                 occupied=false;
@@ -111,15 +132,15 @@ public class HotelSystem
     }
     
     /**
-     * Add java documentation
+     * Returns a list of the available rooms of the room type
      * @param roomType
-     * @return 
+     * @return ArrayList of Room
      */
     public ArrayList<Room> findAvailableRoom(Room roomType){
         searchResultRooms.clear();
         ArrayList<Room> temp = null;
         boolean occupied=false;
-        temp = rd.queryDatabase(roomType);     //occupied rooms are returned
+        temp = reservationDatabase.queryDatabase(roomType);     //occupied rooms are returned
         for(int i=1;i<=numRooms-temp.size();i++){
             occupied=false;
             for(int j=0;j<temp.size();j++){
@@ -135,17 +156,22 @@ public class HotelSystem
     }
     
     /**
-     * Add java documentation
+     * Returns the found reservation
      * @param res
-     * @return 
+     * @return Reservation
      */
     public Reservation lookUpReservation(String res){
-        Reservation result = rd.queryDatabase(res);
+        Reservation result = reservationDatabase.queryDatabase(res);
         return result;
     }
     
+    /**
+     * Returns true if the reservation code exists
+     * @param res
+     * @return Boolean
+     */
     public boolean reservationExist(String res) {
-        Reservation result = rd.queryDatabase(res);
+        Reservation result = reservationDatabase.queryDatabase(res);
         return (result != null);
     }
     
@@ -156,7 +182,7 @@ public class HotelSystem
      * @return 
      */
     public ArrayList<Reservation> findOccupiedRoom(Calendar startDate, Calendar endDate){
-        searchResultReservations = rd.findReservations(startDate, endDate);
+        searchResultReservations = reservationDatabase.findReservations(startDate, endDate);
         return searchResultReservations;
     }
     
@@ -168,7 +194,7 @@ public class HotelSystem
      */
     public ArrayList<Reservation> findOccupiedRoom(String firstName,String lastName){
         searchResultReservations.clear();
-        searchResultReservations = rd.queryDatabase(firstName,lastName);
+        searchResultReservations = reservationDatabase.queryDatabase(firstName,lastName);
         return searchResultReservations;
     }
     
@@ -186,7 +212,7 @@ public class HotelSystem
      * @param res 
      */
     public void changeReservation(Reservation res){
-        rd.changeReservation(res);
+        reservationDatabase.changeReservation(res);
     }
     
     /**
@@ -194,7 +220,11 @@ public class HotelSystem
      * @param res 
      */
     public void makeReservation(Reservation res){
-        rd.makeReservation(res);
+        reservationDatabase.makeReservation(res);
+    }
+    
+    public void removeReservation(Reservation res) {
+        reservationDatabase.deleteReservation(res.getReservationCode());
     }
     
 }

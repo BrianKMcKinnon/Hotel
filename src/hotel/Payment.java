@@ -11,7 +11,7 @@ public class Payment {
      */
     public Payment()
     {
-        // blank
+        // This page was intentionally left blank.
     }
     
     /**

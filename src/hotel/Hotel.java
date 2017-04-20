@@ -19,7 +19,7 @@ public class Hotel {
      */
     public static void main(String[] args) 
     {
-       HotelSystem hotelSystem = new HotelSystem(200);
+       HotelSystem hotelSystem = HotelSystem.getInstance(200);
        Welcome frame = new Welcome(hotelSystem);
     }
         

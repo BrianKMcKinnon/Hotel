@@ -40,8 +40,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstName_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lastName_label" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -58,17 +58,17 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <Component id="reservationCode_label" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="roomNumber_label" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="roomType_label" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stayDuration_label" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -95,20 +95,20 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Component id="firstName_label" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Component id="lastName_label" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              <Component id="stayDuration_label" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="roomNumber_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="roomType_label" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="reservationCode_label" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -138,27 +138,27 @@
         <Property name="text" type="java.lang.String" value="Welcome Guest"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="firstName_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Chandler"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lastName_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Davidson"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="stayDuration_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="October 15, 2017 until October 19, 2017"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="roomNumber_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Room 217"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="roomType_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="King Size"/>
       </Properties>
@@ -168,7 +168,7 @@
         <Property name="text" type="java.lang.String" value="Reservation Code"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="reservationCode_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="aeuh839t39"/>
       </Properties>

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.GUIFrames.Guest;
+package hotel.GUIFrames.Guest.ModifyRoom;
 
+import hotel.GUIFrames.Guest.ReservationCode;
 import hotel.GUIFrames.Welcome;
 import hotel.HotelSystem;
 import hotel.Payment;
@@ -15,17 +16,18 @@ import javax.swing.JOptionPane;
  *
  * @author Chandler
  */
-public class PaymentScreen extends javax.swing.JFrame {
-
-    Reservation reservation;
+public class ModifyPaymentScreen extends javax.swing.JFrame {
+    Reservation currentReservation;
+    Reservation newReservation;
     
     /**
-     * Creates new form Payment
-     * @param res
+     * Creates new form ModifyPayment
      */
-    public PaymentScreen(Reservation res) {
+    ModifyPaymentScreen(Reservation currentReservation, Reservation newReservation) {
         initComponents();
-        reservation = res;
+        
+        this.currentReservation = currentReservation;
+        this.newReservation = newReservation;
     }
 
     /**
@@ -37,10 +39,9 @@ public class PaymentScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lastName_textField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         ccNumber = new javax.swing.JTextField();
+        firstName_textField = new javax.swing.JTextField();
         crv = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -48,18 +49,17 @@ public class PaymentScreen extends javax.swing.JFrame {
         home_Button = new javax.swing.JButton();
         confirm_Button = new javax.swing.JButton();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jLabel1 = new javax.swing.JLabel();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        firstName_textField = new javax.swing.JTextField();
+        lastName_textField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        amountOwed_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
-        jLabel1.setText("el Hotel");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Welcome Guest");
+        jLabel7.setText("First Name");
 
         jLabel3.setText("Last Name");
 
@@ -81,9 +81,17 @@ public class PaymentScreen extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
+        jLabel1.setText("el Hotel");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Welcome Guest");
+
         jLabel6.setText("CRV");
 
-        jLabel7.setText("First Name");
+        jLabel8.setText("Amount Owed:");
+
+        amountOwed_label.setText("$100");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +115,8 @@ public class PaymentScreen extends javax.swing.JFrame {
                                             .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(ccNumber))))
+                                        .addComponent(ccNumber))
+                                    .addComponent(amountOwed_label)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -127,7 +136,8 @@ public class PaymentScreen extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel2))
                             .addComponent(jLabel1)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -159,7 +169,11 @@ public class PaymentScreen extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(crv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(amountOwed_label))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(home_Button)
                             .addComponent(confirm_Button)))
@@ -171,7 +185,7 @@ public class PaymentScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-       
+
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
         Welcome frame = new Welcome();
         frame.setLocationRelativeTo(this);
@@ -181,24 +195,26 @@ public class PaymentScreen extends javax.swing.JFrame {
 
     private void confirm_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm_ButtonActionPerformed
         if (Payment.checkPayment(ccNumber.getText()))
-        {   
-            reservation.setName(firstName_textField.getText(), lastName_textField.getText());
-            HotelSystem.getInstance(0).makeReservation(reservation);
-            
-            ReservationCode frame = new ReservationCode(reservation);
+        {
+            newReservation.setName(firstName_textField.getText(), lastName_textField.getText());
+            HotelSystem.getInstance(0).makeReservation(newReservation);
+            HotelSystem.getInstance(0).removeReservation(currentReservation);
+
+            ReservationCode frame = new ReservationCode(newReservation);
             frame.setLocationRelativeTo(this);
             this.setVisible(false);
             frame.setVisible(true);
         }
-        
+
         else
         {
             JOptionPane.showMessageDialog(null, "The provided information is not valid.");
         }
-        
+
     }//GEN-LAST:event_confirm_ButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel amountOwed_label;
     private javax.swing.JTextField ccNumber;
     private javax.swing.JButton confirm_Button;
     private javax.swing.JTextField crv;
@@ -211,6 +227,7 @@ public class PaymentScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JTextField lastName_textField;

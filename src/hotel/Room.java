@@ -11,60 +11,39 @@ package hotel;
  */
 public class Room {
     
-    // variables
-    private int roomNumber;
-    private double roomCost;
+    // Variables
+    private final int roomNumber;
+    private final double roomCost;
+    public final RoomType type;
     
     /**
-     * enum as a description of bed size
+     * Enumerator as a description of bed size
      */
-    public enum roomType
+    public enum RoomType
     {
         SUITE, KING, QUEEN, SINGLE          
     }
     
-    public roomType type;
-    
     /**
      * Class constructor 
+     * @param roomNumber
+     * @param roomCost
+     * @param type
      */
-    public Room(int num, double cost, roomType type)
+    public Room(int roomNumber, double roomCost, RoomType type)
     {
-        // constructor
-        roomNumber = num;
-        roomCost = cost;
-        //enumTest(room);
+        this.roomNumber = roomNumber;
+        this.roomCost = roomCost;
         this.type = type;
     }
-   
+    
     /**
-     * Identifies a case for each room type
-     * @param room 
+     * Obtains a room number
+     * @return room number
      */
-    public void enumTest(roomType room)
+    public int getRoomNumber()
     {
-        switch(room)
-        {
-            case SUITE:
-                System.out.println("Suite room was selected.");
-                break;
-               
-            case KING:
-                System.out.println("King room was selected.");
-                break;
-                
-            case QUEEN:
-                System.out.println("Queen room was selected.");
-                break;
-                
-            case SINGLE:
-                System.out.println("Single room was selected.");
-                break;
-                
-            default:
-                System.out.println("No room was selected.");
-                break;
-        }
+        return roomNumber;
     }
     
     /**
@@ -77,65 +56,33 @@ public class Room {
     }
     
     /**
-     * Obtains the name of room type
-     * @param input
-     * @return the name of room type
-     */
-    public roomType translateType(int input){
-        
-        switch(input){
-            case 0 :
-                return roomType.SUITE;
-            case 1 :
-                return roomType.KING;
-            case 2 :
-                return roomType.QUEEN;
-            case 3 :
-                return roomType.SINGLE;
-            default :
-                return roomType.SUITE;
-        }
-        
-    }
-    
-    
-    /**
-     * Obtains a room number
-     * @return room number
-     */
-    public int getRoomNumber()
-    {
-        return roomNumber;
-    }
-    
-    /**
      * Obtains a type of a room
      * @return type of a room
      */
-    public roomType getRoomType()
+    public RoomType getRoomType()
     {
         return type;
     }
     
     /**
-     * Prints out room type to string and returns a type name
+     * Returns the roomType name
      * @return room type name
      */
     public String getRoomTypeString()
     {
-        System.out.println("room type to string");
         return (type.name());
     }
     
     /**
-     * Obtains room type in integer
+     * Obtains room type as an integer
      * @return an integer of room type
      */
     public int getRoomTypeInt()
     {
-        if(null == type)
-            return 3;
-        else switch (type) {
+        //if(type == null)  // SHOULD default in the switch statement
+            //return 3;
+        //else 
+        switch (type) {
             case SUITE:
                 return 0;
             case KING:
@@ -147,4 +94,23 @@ public class Room {
         }
     }
     
+    /**
+     * Obtains the name of room type
+     * @param input
+     * @return the name of room type
+     */
+    public static RoomType translateType(int input){
+        switch(input){
+            case 0 :
+                return RoomType.SUITE;
+            case 1 :
+                return RoomType.KING;
+            case 2 :
+                return RoomType.QUEEN;
+            case 3 :
+                return RoomType.SINGLE;
+            default :
+                return RoomType.SUITE;
+        }
+    }
 }

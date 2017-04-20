@@ -5,7 +5,8 @@
  */
 package hotel.GUIFrames.Guest;
 
-import hotel.GUIFrames.RoomResults;
+import hotel.GUIFrames.FoundRoomResults;
+import hotel.GUIFrames.Guest.ModifyRoom.ModifyFoundRoomResult;
 import hotel.GUIFrames.Welcome;
 import hotel.HotelSystem;
 import hotel.Reservation;
@@ -19,23 +20,18 @@ import javax.swing.JOptionPane;
  * @author brian
  */
 public class GuestModifyReservation extends javax.swing.JFrame {
-    HotelSystem hs;
-    Reservation res;
+    Reservation currentReservation;
+    
     /**
      * Creates new form GuestModifyReservation
      */
-    public GuestModifyReservation(HotelSystem hotelsystem, Reservation reservation) {
+    public GuestModifyReservation(Reservation reservation) {
         initComponents();
-        hs = hotelsystem;
-        res = reservation;
-        initReservation(); 
+        this.currentReservation = reservation;
         
-    }
-    private void initReservation()
-    {
-        startDate_Chooser.setCalendar(res.getStartDate());
-        endDate_Chooser.setCalendar(res.getEndDate());
-        
+        startDate_Chooser.setCalendar(reservation.getStartDate());
+        endDate_Chooser.setCalendar(reservation.getEndDate());
+        roomType_Chooser.setSelectedIndex(reservation.getRoom().getRoomTypeInt());    
     }
 
     /**
@@ -175,7 +171,7 @@ public class GuestModifyReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void home_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_ButtonActionPerformed
-        Welcome frame = new Welcome(hs);
+        Welcome frame = new Welcome();
         frame.setLocationRelativeTo(this);
         this.setVisible(false);
         frame.setVisible(true);
@@ -186,7 +182,29 @@ public class GuestModifyReservation extends javax.swing.JFrame {
     }//GEN-LAST:event_roomType_ChooserAncestorAdded
 
     private void modifyRooms_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyRooms_ButtonActionPerformed
-        
+        if (startDate_Chooser.getCalendar().compareTo(endDate_Chooser.getCalendar()) > 0)   // Check if startDate is before endDate
+            JOptionPane.showMessageDialog(null, "Start Date must be before End Date");
+        else 
+        {
+            HotelSystem hotelSystem = HotelSystem.getInstance(0);
+            ArrayList<Room> foundRooms = hotelSystem.findAvailableRoom(startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), Room.translateType(roomType_Chooser.getSelectedIndex()));
+            if (foundRooms != null)
+            {
+                Reservation newReservation = new Reservation(foundRooms.get(0), startDate_Chooser.getCalendar(), endDate_Chooser.getCalendar(), "First", "Last");
+                if (newReservation.getStartDate() != null && currentReservation.getDurationOfStay() != newReservation.getDurationOfStay() && currentReservation.getRoom().getRoomType() != currentReservation.getRoom().getRoomType())
+                {
+                    ModifyFoundRoomResult frame = new ModifyFoundRoomResult(currentReservation, newReservation);
+                    frame.setLocationRelativeTo(this);
+                    this.setVisible(false);
+                    frame.setVisible(true);
+                }
+            }
+            
+            else
+            {
+                JOptionPane.showMessageDialog(null, "There are no available rooms with the given parameters.");
+            }
+        }
     }//GEN-LAST:event_modifyRooms_ButtonActionPerformed
 
     /**
