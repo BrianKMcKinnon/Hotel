@@ -37,6 +37,18 @@ public class Reservation {
         this.lastName = lastName;
     }
 
+    /**
+     * Another class constructor
+     * @param string
+     * @param aInt
+     * @param aDouble
+     * @param aDouble0
+     * @param string0
+     * @param string1
+     * @param startDate
+     * @param endDate
+     * @param valueOf 
+     */
     Reservation(String string, int aInt, double aDouble, double aDouble0, String string0, String string1, Calendar startDate, Calendar endDate, Room.RoomType valueOf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -110,6 +122,11 @@ public class Reservation {
         return lastName;
     }
     
+    /**
+     * Sets first and last names
+     * @param fName
+     * @param lName 
+     */
     public void setName(String fName, String lName)
     {
         firstName = fName;

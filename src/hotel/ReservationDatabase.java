@@ -19,14 +19,12 @@ import java.text.SimpleDateFormat;
 
 public class ReservationDatabase 
 {
-    
     // variables
     private ArrayList<Reservation> currentReservations;
     private Connection con = null;
     
     /**
-     * Class Constructor
-     * Add java documentation
+     * Class Constructor with exception handling
      */
     public ReservationDatabase(){
 
@@ -42,7 +40,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Returns a list of taken rooms between the start and end dates
      * @param start
      * @param end
      * @return an array list of rooms that are taken
@@ -72,7 +70,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Searches for and returns a list of reservations with the specified start and end dates
      * @param startStay
      * @param endStay
      * @return an array list of all current reservations
@@ -124,7 +122,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Searches for and returns a list of taken rooms within the start and end dates and the specified room type
      * @param start
      * @param end
      * @param room
@@ -173,7 +171,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Searches for and returns a reservation object from a specified reservation number
      * @param reservation
      * @return a reservation object
      */
@@ -220,7 +218,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Searches for and returns a list of taken rooms with the specified room object
      * @param room
      * @return an array list of all taken rooms
      */
@@ -246,7 +244,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Add java documentation
+     * Searches for and returns a list of reservations from the customer's first and last names
      * @param lastName
      * @return an array list of current reservations
      */
@@ -293,7 +291,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Makes a reservation
+     * Makes a reservation to the database
      * @param res 
      */
     public void makeReservation(Reservation res){
@@ -320,7 +318,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Changes/Modifies a reservation
+     * Changes/Modifies a reservation from the database
      * @param res 
      */
     public void changeReservation(Reservation res){
@@ -346,7 +344,7 @@ public class ReservationDatabase
     }
     
     /**
-     * Deletes a reservation
+     * Deletes a reservation from the database
      * @param resNum 
      */
     public void deleteReservation(String resNum){

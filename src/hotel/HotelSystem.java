@@ -176,10 +176,10 @@ public class HotelSystem
     }
     
     /**
-     * Add java documentation
+     * Searches for reservations that matches the start and end date
      * @param startDate
      * @param endDate
-     * @return 
+     * @return ArrayList of reservation objects
      */
     public ArrayList<Reservation> findOccupiedRoom(Calendar startDate, Calendar endDate){
         searchResultReservations = reservationDatabase.findReservations(startDate, endDate);
@@ -187,20 +187,20 @@ public class HotelSystem
     }
     
     /**
-     * Add java documentation
+     * Searches for reservations that matches the first and last name of guest
      * @param firstName
      * @param lastName
-     * @return 
+     * @return Arraylist of reservation objects
      */
-    public ArrayList<Reservation> findOccupiedRoom(String firstName,String lastName){
+    public ArrayList<Reservation> findOccupiedRoom(String firstName, String lastName){
         searchResultReservations.clear();
         searchResultReservations = reservationDatabase.queryDatabase(firstName,lastName);
         return searchResultReservations;
     }
     
     /**
-     * Add java documentation
-     * @return 
+     * Returns all the room
+     * @return Arraylist of room objects
      */
     public ArrayList<Room> allRooms(){
         
@@ -208,7 +208,7 @@ public class HotelSystem
     }
     
     /**
-     * Add java documentation
+     * Modifies a reservation
      * @param res 
      */
     public void changeReservation(Reservation res){
@@ -216,13 +216,17 @@ public class HotelSystem
     }
     
     /**
-     * Add java documentation
+     * Makes a reservation
      * @param res 
      */
     public void makeReservation(Reservation res){
         reservationDatabase.makeReservation(res);
     }
     
+    /**
+     * Removes a reservation
+     * @param res 
+     */
     public void removeReservation(Reservation res) {
         reservationDatabase.deleteReservation(res.getReservationCode());
     }
